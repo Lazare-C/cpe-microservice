@@ -19,3 +19,18 @@
     justify-content: space-around;
     flex-direction: row;
 }
+
+.list-pokemon{
+    display: flex;
+    border: solid 1px black;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2rem;
+
+}
+
+#image{
+    width: 150px;
+    height: auto;
+}
