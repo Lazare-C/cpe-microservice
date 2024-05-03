@@ -18,6 +18,7 @@ function callback(response){
         cardList.push(card);
     });
     console.log(response);
+    console.log(cardList);
 
     // Reference to the template element
     let template = document.querySelector("#selectedCard");
@@ -28,17 +29,16 @@ function callback(response){
         let clone = document.importNode(template.content, true);
 
         // Replace placeholders in the cloned template with card data
-        let newContent = clone.querySelector(".content").innerHTML
-            .replace(/{{date}}/g, card.date)
-            .replace(/{{name}}/g, card.name)
-            .replace(/{{family_src}}/g, card.imgUrl)
+        newContent= clone.firstElementChild.innerHTML
+            .replace(/{{date}}/g, card.name)
+            .replace(/{{family_src}}/g, card.smallImgUrl)
+            .replace(/{{image_src}}/g, card.imgUrl)
             .replace(/{{family_name}}/g, card.family)
-            .replace(/{{image_src}}/g, card.smallImgUrl)
-            .replace(/{{like}}/g, card.like)
-            .replace(/{{comment}}/g, card.comment)
-            .replace(/{{button}}/g, card.button);
+            .replace(/{{like}}/g, "4")
+            .replace(/{{comment}}/g, "5")
+            .replace(/{{button}}/g, "Voir plus");
 
-        clone.querySelector(".content").innerHTML = newContent;
+        clone.firstElementChild.innerHTML= newContent;
 
         // Append the cloned card to the grid container
         let cardContainer = document.querySelector("#gridContainer");
