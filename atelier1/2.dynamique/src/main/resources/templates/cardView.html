@@ -9,19 +9,21 @@
     <div th:replace="~{fragments/header :: header}">
         <h1> Cards </h1>
     </div>
-    <div>
-        <h2 th:utext="${myCard.familly}">...</h2>
-        <h3 th:utext="${myCard.name}">...</h3>
-        <img th:src="${myCard.imgUrl}" alt="">
+    <div class="parent-container">
+        <div id="card-view-container">
+            <h2 th:utext="${myCard.familly}">...</h2>
+            <h3 th:utext="${myCard.name}">...</h3>
+            <img th:src="${myCard.imgUrl}" alt="">
 
 
-        <div>
-            <p th:src="${myCard.description}">
-            </p>	
+            <div>
+                <p th:utext="${myCard.description}">
+                </p>	
+            </div>
+
+            <div class="slider-container"><h3 th:text="${myCard.hp}">...</h3> <h3 th:text="${myCard.energy}">...</h3></div>
+            <div class="slider-container"><h3 th:text="${myCard.defense}">...</h3> <h3 th:text="${myCard.attack}">...</h3></div>
         </div>
-
-        <div><h3 th:text="${myCard.hp}">...</h3> <h3 th:text="${myCard.energy}">...</h3></div>
-        <div><h3 th:text="${myCard.defense}">...</h3> <h3 th:text="${myCard.attack}">...</h3></div>
     </div>
 </body>
 </html>
