@@ -1,0 +1,105 @@
+html{
+    font-size: 10px
+}
+
+body{
+    font-size: 10px
+}
+
+.imageCard{
+    height: 100px;
+}
+
+.limitText{
+    text-overflow:ellipsis;
+}
+
+.ui.messageLight{
+    background: #ffffff;
+    padding: 1em 1.5em;
+    line-height: 1.4285em;
+    border-radius: .28571429rem;
+    -webkit-box-shadow: 0 0 0 1px rgba(252, 252, 252, 0.22) inset, 0 0 0 0 transparent;
+    box-shadow: 0 0 0 1px rgba(252, 252, 252, 0.22) inset, 0 0 0 0 transparent;
+}
+
+.overflowHiden{
+    overflow:  auto;
+}
+
+/* Style pour le formulaire */
+.ui.form {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Style pour les titres de section */
+.ui.dividing.header {
+    font-size: 1.5em;
+    color: #333;
+}
+
+/* Style pour les étiquettes */
+label {
+    font-weight: bold;
+}
+
+/* Style pour les champs de texte */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style pour le bouton de soumission */
+.ui.button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Style pour le bouton de soumission au survol */
+.ui.button:hover {
+    background-color: #0056b3;
+}
+
+/* Style pour les messages d'erreur */
+.ui.error.message {
+    display: none;
+    color: red;
+    margin-top: 5px;
+}
+
+/* Style pour les cases à cocher */
+.ui.checkbox input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Style pour les colonnes du formulaire */
+.column {
+    padding: 20px;
+}
+
+/* Style pour les bordures des champs de texte en focus */
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style pour les messages de validation */
+.ui.success.message {
+    color: green;
+}
