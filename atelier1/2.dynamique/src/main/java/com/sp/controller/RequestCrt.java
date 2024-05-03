@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.sp.model.Card;
 import com.sp.model.CardFormDTO;
 
+import java.util.List;
+
 @Controller 
 public class RequestCrt {
     
@@ -34,6 +36,13 @@ public class RequestCrt {
     Card c=cardDAO.addCard( cardForm.getName(), cardForm.getDescription(),  cardForm.getImgUrl(),  cardForm.getFamilly(),  cardForm.getAffinity(),  cardForm.getHp(), cardForm.getEnergy(),  cardForm.getAttack(),  cardForm.getDefense());
         model.addAttribute("myCard",c );
         return "cardView";
+    }
+
+    @RequestMapping(value = { "/list"}, method = RequestMethod.GET)
+    public String getList(Model model) {
+        List<Card> list = cardDAO.getCardList();
+        model.addAttribute("myList",list );
+        return "listView";
     }
 
 }
