@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3141aebd-c0c1-4e74-89c5-1b78fb0649be" name="Changes" comment="added auth endpoint and bd">
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="3141aebd-c0c1-4e74-89c5-1b78fb0649be" name="Changes" comment="fix: updated AuthService">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/fragments/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,12 +65,22 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:Lazare-C/cpe-microservice.git&quot;,
-    &quot;accountId&quot;: &quot;aa73942c-d998-496e-b2c2-38c4f2dcd40c&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:Lazare-C/cpe-microservice.git",
+    "accountId": "aa73942c-d998-496e-b2c2-38c4f2dcd40c"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "Lazare-C",
+    "repository": "cpe-microservice"
   }
-}</component>
+}]]></component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
@@ -118,7 +129,7 @@
     "Spring Boot.SpWebAppStep1Application (1).executor": "Debug",
     "Spring Boot.SpWebAppStep1Application.executor": "Debug",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "#6 on develop",
     "go.import.settings.migrated": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -224,7 +235,7 @@
       <updated>1716282488660</updated>
       <workItem from="1716282494368" duration="615000" />
       <workItem from="1716283327367" duration="4227000" />
-      <workItem from="1716291482335" duration="4722000" />
+      <workItem from="1716291482335" duration="5654000" />
     </task>
     <task id="LOCAL-00001" summary="added auth endpoint and bd">
       <option name="closed" value="true" />
@@ -234,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716293788100</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: updated AuthService">
+      <option name="closed" value="true" />
+      <created>1716296334694</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716296334694</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +262,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added jetbrain folder" />
     <MESSAGE value="added auth endpoint and bd" />
-    <option name="LAST_COMMIT_MESSAGE" value="added auth endpoint and bd" />
+    <MESSAGE value="fix: updated AuthService" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: updated AuthService" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

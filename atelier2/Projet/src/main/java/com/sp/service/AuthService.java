@@ -62,6 +62,9 @@ public class AuthService {
      * @return null si pas d'utilisateur, sinon l'utilisateur courant
      */
     public UserBo getUser() {
+        if (this.httpServletRequest.getCookies() == null) {
+            return null;
+        }
         Cookie cookie = Arrays.stream(this.httpServletRequest.getCookies())
                 .filter(c -> c.getName().equals(SESSION_COOKIE_NAME)).findAny().orElse(null);
         if (cookie == null) {
