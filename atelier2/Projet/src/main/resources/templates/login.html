@@ -7,7 +7,8 @@
 
         <title>Login</title>
 
-        <link rel="stylesheet" type="text/css" href="../../lib/Semantic-UI-CSS-master/semantic.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="../../lib/Semantic-UI-CSS-master/semantic.min.css"> -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/lib/Semantic-UI-CSS-master/semantic.min.css}" />
         <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 
     </head>
@@ -15,19 +16,19 @@
     <body>
         <div>
             <div class="column">
-                <form class="ui form" action="./addData" method="GET">
+                <form class="ui form" action="/login" method="POST">
                     <h3 class="ui dividing header">Login</h3>
                     <div class="field">
-                        <label>Surname</label>
-                        <input type="text" name="first-name" placeholder="Surname">
+                        <label>username</label>
+                        <input type="text" name="username" placeholder="Username">
                     </div>
                     <div class="field">
                         <label>Password</label>
-                        <input type="password" name="last-name" placeholder="Passeword">
+                        <input type="password" name="password" placeholder="Passeword">
                     </div>
                     <button class="ui button" type="submit" >Connect</button>
                 </form>
-                <button class="ui button cancel">Cancel</button>
+                <a href="/" class="ui button cancel">Cancel</a>
             </div>
         </div>
     </body>

@@ -39,7 +39,7 @@ public class AuthService {
         this.userRepository.save(new UserBo(username, password));
     }
 
-    public void loginUser(String username, String password) {
+    public UserBo loginUser(String username, String password) {
         UserBo user = this.userRepository.findByUsername(username);
         if (user == null) {
             throw new LoginException("User does not exist");
@@ -54,6 +54,7 @@ public class AuthService {
         cookie.setMaxAge(60 * 60 * 24 * 365);
         cookie.isHttpOnly();
         this.httpServletResponse.addCookie(cookie);
+        return user;
     }
 
     /**
