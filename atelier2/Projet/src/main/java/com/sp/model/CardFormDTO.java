@@ -9,8 +9,8 @@ public class CardFormDTO  {
 	private String affinity;
 	private String Hp;
 	private String energy;
-	private String attack;
-	private String defense;
+	private int attack;
+	private int defense;
 
 
 
@@ -28,12 +28,12 @@ public class CardFormDTO  {
 		this.affinity="";
 		this.Hp="";
 		this.energy="";
-		this.attack="";
-		this.defense="";
+		this.attack=0;
+		this.defense=0;
 	}
 
 
-	public CardFormDTO(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, String attack, String defense) {
+	public CardFormDTO(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
@@ -96,19 +96,19 @@ public class CardFormDTO  {
 		this.energy = energy;
 	}
 
-	public String getAttack() {
+	public int getAttack() {
 		return this.attack;
 	}
 
-	public void setAttack(String attack) {
+	public void setAttack(int attack) {
 		this.attack = attack;
 	}
 
-	public String getDefense() {
+	public int getDefense() {
 		return this.defense;
 	}
 
-	public void setDefense(String defense) {
+	public void setDefense(int defense) {
 		this.defense = defense;
 	}
 

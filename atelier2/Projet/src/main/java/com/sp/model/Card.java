@@ -1,23 +1,47 @@
 package com.sp.model;
-import java.util.Objects;
-public class Card  {
-	private int userId;
+import com.sp.model.bo.UserBo;
+import jakarta.persistence.*;
+import org.apache.catalina.User;
 
+import java.util.Objects;
+@Entity
+@Table(name = "card")
+public class Card  {
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	private Long id;
+	@Column(name = "name", nullable = false)
 	private String name;
+	@Column(name = "description", nullable = false)
 	private String description;
+	@Column(name = "imgUrl", nullable = true)
 	private String imgUrl;
+	@Column(name = "familly", nullable = false)
 	private String familly;
+	@Column(name = "affinity", nullable = false)
 	private String affinity;
+	@Column(name = "hp", nullable = false)
 	private String Hp;
+	@Column(name = "energy", nullable = false)
 	private String energy;
-	private String attack;
-	private String defense;
+	@Column(name = "attack", nullable = false)
+	private int attack;
+	@Column(name = "defense", nullable = false)
+	private int defense;
+	@Column(name = "price", nullable = true)
+	private double price;
+	@ManyToOne
+	@JoinColumn(name = "userId", nullable = true)
+	private UserBo userBo;
 
 
 	public Card() {
 	}
 
-	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, String attack, String defense) {
+	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
@@ -85,19 +109,19 @@ public class Card  {
 		this.energy = energy;
 	}
 
-	public String getAttack() {
+	public int getAttack() {
 		return this.attack;
 	}
 
-	public void setAttack(String attack) {
+	public void setAttack(int attack) {
 		this.attack = attack;
 	}
 
-	public String getDefense() {
+	public int getDefense() {
 		return this.defense;
 	}
 
-	public void setDefense(String defense) {
+	public void setDefense(int defense) {
 		this.defense = defense;
 	}
 
@@ -136,12 +160,12 @@ public class Card  {
 		return this;
 	}
 
-	public Card attack(String attack) {
+	public Card attack(int attack) {
 		setAttack(attack);
 		return this;
 	}
 
-	public Card defense(String defense) {
+	public Card defense(int defense) {
 		setDefense(defense);
 		return this;
 	}
