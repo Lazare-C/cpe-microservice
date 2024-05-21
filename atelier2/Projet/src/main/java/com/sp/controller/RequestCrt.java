@@ -50,7 +50,7 @@ public class RequestCrt {
 
     @RequestMapping(value = { "/addCard"}, method = RequestMethod.POST)
     public String addCard(Model model, @ModelAttribute("cardForm") CardFormDTO cardForm) {
-    Card c=cardDAO.addCard( cardForm.getName(), cardForm.getDescription(),  cardForm.getImgUrl(),  cardForm.getFamilly(),  cardForm.getAffinity(),  cardForm.getHp(), cardForm.getEnergy(),  cardForm.getAttack(),  cardForm.getDefense());
+    Card c=cardDAO.addCard( cardForm.getName(), cardForm.getDescription(),  cardForm.getImgUrl(),  cardForm.getFamilly(),  cardForm.getAffinity(),  cardForm.getHp(), cardForm.getEnergy(),  cardForm.getAttack(),  cardForm.getDefense(), cardForm.getPrice());
         model.addAttribute("myCard",c );
         return "cardView";
     }

@@ -41,7 +41,7 @@ public class Card  {
 	public Card() {
 	}
 
-	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense) {
+	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, String price) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
@@ -51,6 +51,7 @@ public class Card  {
 		this.energy = energy;
 		this.attack = attack;
 		this.defense = defense;
+		this.price = price;
 	}
 
 	public String getName() {
@@ -124,6 +125,13 @@ public class Card  {
 	public void setDefense(int defense) {
 		this.defense = defense;
 	}
+	public String getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
 	public Card name(String name) {
 		setName(name);
@@ -170,6 +178,11 @@ public class Card  {
 		return this;
 	}
 
+	public Card price(String price) {
+		setPrice(price);
+		return this;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == this)
@@ -183,7 +196,7 @@ public class Card  {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, description, imgUrl, familly, affinity, Hp, energy, attack, defense);
+		return Objects.hash(name, description, imgUrl, familly, affinity, Hp, energy, attack, defense, price);
 	}
 
 	@Override
@@ -198,6 +211,7 @@ public class Card  {
 			", energy='" + getEnergy() + "'" +
 			", attack='" + getAttack() + "'" +
 			", defense='" + getDefense() + "'" +
+			", price='" + getPrice() + "'" +
 			"}";
 	}
 	

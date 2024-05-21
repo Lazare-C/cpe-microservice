@@ -20,18 +20,21 @@
     flex-direction: row;
 }
 
-.list-pokemon{
+.market{
     display: flex;
     border: solid 1px black;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-radius: 2rem;
+}
 
+.table{
+    border: black 2px solid;
+    font-size: 0.8rem;
 }
 
 #image{
-    width: 150px;
+    width: 450px;
     height: auto;
 }
 
