@@ -22,6 +22,11 @@ public class AuthController {
 
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
     public String register(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+
+        if (this.authService.getUser() != null) {
+            return "homePage";
+        }
+
         try {
             this.authService.registerUser(username, password);
             return "login";
@@ -32,6 +37,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+
+        if (this.authService.getUser() != null) {
+            return "homePage";
+        }
         UserBo userBo = this.authService.loginUser(username, password);
         try {
             if (userBo != null) {
