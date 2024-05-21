@@ -4,98 +4,262 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3141aebd-c0c1-4e74-89c5-1b78fb0649be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/SpWebAppStep1Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/RequestCrt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/cardDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/model/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/model/CardFormDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-form-v1 copy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-form-v1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-form-v2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-formview-v1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-formview-v2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-v1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-v2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-view-list-v1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-view-list-v2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-view-v1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/index-view-v2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/indexUK-v1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/images/indexUK-v2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/img/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/img/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/img/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/img/img4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/img/lego-alien.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/img/lego-sherif.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/cardForm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/cardView.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/fragments/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/listView.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/test/java/com/sp/SpWebAppStep1ApplicationTests.java" afterDir="false" />
+    <list default="true" id="3141aebd-c0c1-4e74-89c5-1b78fb0649be" name="Changes" comment="added jetbrain folder">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/exception/LoginException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/model/bo/UserBo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/db/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cpe-microservice.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cpe-microservice.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="com.intellij.jpb.JpaRepository" />
+        <option value="Class" />
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Lazare-C&quot;
+  }
+}</component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1716282439" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1716282438" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Lazare-C/cpe-microservice.git&quot;,
+    &quot;accountId&quot;: &quot;aa73942c-d998-496e-b2c2-38c4f2dcd40c&quot;
+  }
+}</component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
-  <component name="ProjectId" id="2glnyU66U3UeBzFt6rdQqWLogUj" />
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2glqP5ZVLfcNnhIG5VVylTGrh9Z" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "Application.SpWebAppStep1Application.executor": "Run",
+    "HTTP Request.generated-requests | #7.executor": "Run",
+    "HTTP Request.generated-requests | #8.executor": "Run",
+    "HTTP Request.generated-requests | #9.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.SpWebAppStep1Application (1).executor": "Debug",
+    "Spring Boot.SpWebAppStep1Application.executor": "Debug",
+    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "develop",
+    "go.import.settings.migrated": "true",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Gregory/CPE/4IRC/Micro_Services/cpe-microservice/atelier2/Projet",
+    "last_opened_file_path": "C:/Users/LazareC/Documents/Dev/cpe/microservice/atelier/atelier2/Projet",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Gregory\CPE\4IRC\Micro_Services\cpe-microservice\atelier2" />
-    </key>
+  <component name="RunManager" selected="Spring Boot.SpWebAppStep1Application">
+    <configuration name="SpWebAppStep1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sp.SpWebAppStep1Application" />
+      <module name="cpe-microservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #7" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="7" requestIdentifier="#7" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #8" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="8" requestIdentifier="#8" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #9" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="9" requestIdentifier="#9" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="SpWebAppStep1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Atelier2" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sp.SpWebAppStep1Application" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/atelier2/Projet" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.SpWebAppStep1Application" />
+      <item itemvalue="HTTP Request.generated-requests | #7" />
+      <item itemvalue="HTTP Request.generated-requests | #8" />
+      <item itemvalue="HTTP Request.generated-requests | #9" />
+      <item itemvalue="Spring Boot.SpWebAppStep1Application" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.generated-requests | #9" />
+        <item itemvalue="HTTP Request.generated-requests | #8" />
+        <item itemvalue="HTTP Request.generated-requests | #7" />
+        <item itemvalue="Application.SpWebAppStep1Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3141aebd-c0c1-4e74-89c5-1b78fb0649be" name="Changes" comment="" />
-      <created>1716281285386</created>
+      <changelist id="3141aebd-c0c1-4e74-89c5-1b78fb0649be" name="Changes" comment="added jetbrain folder" />
+      <created>1716282488660</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1716281285386</updated>
-      <workItem from="1716281286402" duration="331000" />
+      <updated>1716282488660</updated>
+      <workItem from="1716282494368" duration="615000" />
+      <workItem from="1716283327367" duration="4227000" />
+      <workItem from="1716291482335" duration="2249000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added jetbrain folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="added jetbrain folder" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>false</integration-enabled>
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/AuthService.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
