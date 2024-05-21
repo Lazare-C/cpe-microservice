@@ -20,31 +20,30 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @RequestMapping(value = { "/register"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
     public String register(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        try{
+        try {
             this.authService.registerUser(username, password);
             return "login";
-        }catch(Exception e){
+        } catch (Exception e) {
             return e.getMessage();
         }
     }
 
     @PostMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        this.authService.loginUser(username, password);
-        try{
-            UserBo currentUser = this.authService.getUser();
-            if(currentUser != null){
-                model.addAttribute("myUser", currentUser);
+        UserBo userBo = this.authService.loginUser(username, password);
+        try {
+            if (userBo != null) {
+                model.addAttribute("myUser", userBo);
                 return "homePage";
             } else {
                 return null;
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             return e.getMessage();
         }
-        
+
     }
 
     @PostMapping("/logout")
