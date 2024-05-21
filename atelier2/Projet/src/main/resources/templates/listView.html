@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>View List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">
+    <h1> Liste des cartes </h1>
+</div>
+<div class="parent-container">
+    <div class="list-pokemon">
+        <div th:each="card : ${myList}">
+            <h2 th:utext="${card.familly}">...</h2>
+            <h3 th:utext="${card.name}">...</h3>
+            <img th:src="${card.imgUrl}" alt="" id="image">
+
+
+            <div>
+                <p th:utext="${card.description}">
+                </p>
+            </div>
+
+            <div class="slider-container"><h3 th:text="${card.hp}">...</h3> <h3 th:text="${card.energy}">...</h3></div>
+            <div class="slider-container"><h3 th:text="${card.defense}">...</h3> <h3 th:text="${card.attack}">...</h3></div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
