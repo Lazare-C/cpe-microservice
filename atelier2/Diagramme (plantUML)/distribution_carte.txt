@@ -1,0 +1,18 @@
+@startuml
+actor Client
+participant "Serveur" as Server
+participant "Base de données" as DB
+
+Client -> Server: Connexion
+Server -> DB: Vérifier utilisateur
+DB --> Server: Utilisateur valide
+Server -> DB: Vérification de la première connexion
+DB --> Server: Première connexion
+alt Première connexion
+    Server -> DB: Distribution de 5 cartes
+    DB --> Server: Confirmation distribution
+    Server --> Client: Cartes distribuées
+else Pas première connexion
+    Server --> Client: Connexion réussie
+end
+@enduml
