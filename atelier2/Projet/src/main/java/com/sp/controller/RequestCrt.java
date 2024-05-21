@@ -1,6 +1,5 @@
 package com.sp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,19 +8,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sp.model.Card;
 import com.sp.model.CardFormDTO;
+import com.sp.model.bo.UserBo;
+import com.sp.service.AuthService;
 
 import java.util.List;
 
 @Controller 
 public class RequestCrt {
-    
-    @Autowired
-      cardDAO cardDAO;
+
+    private final cardDAO cardDAO;
+    private final AuthService authService;
+
+    public RequestCrt(cardDAO cardDAO, AuthService authService){
+        this.cardDAO = cardDAO;
+        this.authService = authService;
+    }
 
     @RequestMapping(value = { "/", "/index"}, method = RequestMethod.GET)
         public String view(Model model) {
-        model.addAttribute("myCard",cardDAO.getRandomCard() );
-        return "cardView";
+            UserBo currentUser = this.authService.getUser();
+            if(currentUser != null){
+                model.addAttribute("myUser", currentUser);
+                return "homePage";
+            } else {
+                return "addUser";
+            }
+
+    }
+
+    @RequestMapping(value = { "/login"}, method = RequestMethod.GET)
+    public String login(Model model) {
+        return "login";
     }
 
     @RequestMapping(value = { "/addCard"}, method = RequestMethod.GET)

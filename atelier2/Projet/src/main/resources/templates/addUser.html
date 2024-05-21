@@ -7,34 +7,35 @@
 
     <title>Login</title>
 
-    <link rel="stylesheet" type="text/css" href="../../lib/Semantic-UI-CSS-master/semantic.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/lib/Semantic-UI-CSS-master/semantic.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 
 </head>
 
 <body>
     <div class="column">
-        <form class="ui form" action="./addData" method="GET">
+        <form class="ui form" action="/register" method="POST">
             <h3 class="ui dividing header">Add User</h3>
-            <div class="field">
+            <!-- <div class="field">
                 <label>Name</label>
                 <input type="text" name="first-name" placeholder="Name">
-            </div>
+            </div> -->
             <div class="field">
-                <label>Surname</label>
-                <input type="text" name="first-name" placeholder="Surname">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username">
             </div>
             <div class="field">
                 <label>Password</label>
-                <input type="password" name="last-name" placeholder="Password">
+                <input type="password" name="password" placeholder="Password">
             </div>
-            <div class="field">
+            <!-- <div class="field">
                 <label>Re-Password</label>
                 <input type="password" name="last-name" placeholder="Re-Password">
-            </div>
+            </div> -->
             <button class="ui button" type="submit">+ OK</button>
             <button class="ui button cancel" type="button">Cancel</button>
         </form>
+        <a href="/login">Se connecter</a>
     </div>
 </body>
 </html>

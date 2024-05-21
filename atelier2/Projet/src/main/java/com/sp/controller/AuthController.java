@@ -1,12 +1,16 @@
 package com.sp.controller;
 
+import com.sp.model.bo.UserBo;
 import com.sp.service.AuthService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class AuthController {
 
     private final AuthService authService;
@@ -16,16 +20,31 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestParam("username") String username, @RequestParam("password") String password) {
-        this.authService.registerUser(username, password);
-        return ResponseEntity.ok("success");
+    @RequestMapping(value = { "/register"}, method = RequestMethod.POST)
+    public String register(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+        try{
+            this.authService.registerUser(username, password);
+            return "login";
+        }catch(Exception e){
+            return e.getMessage();
+        }
     }
 
     @PostMapping("/login")
-    public void login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         this.authService.loginUser(username, password);
-        ResponseEntity.ok("success");
+        try{
+            UserBo currentUser = this.authService.getUser();
+            if(currentUser != null){
+                model.addAttribute("myUser", currentUser);
+                return "homePage";
+            } else {
+                return null;
+            }
+        } catch(Exception e){
+            return e.getMessage();
+        }
+        
     }
 
     @PostMapping("/logout")
