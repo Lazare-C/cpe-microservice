@@ -4,8 +4,11 @@ import com.sp.exception.LoginException;
 import com.sp.model.bo.UserBo;
 import com.sp.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -13,13 +16,17 @@ import java.util.Random;
 @Service
 public class AuthService {
 
-    private final Map<UserBo, String> sessionList = new HashMap<>();
-
+    public final String SESSION_COOKIE_NAME = "sessionId";
+    private final Map<String, UserBo> sessionList = new HashMap<>();
 
     private final UserRepository userRepository;
+    private final HttpServletRequest httpServletRequest;
+    private final HttpServletResponse httpServletResponse;
 
-    public AuthService(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         this.userRepository = userRepository;
+        this.httpServletRequest = httpServletRequest;
+        this.httpServletResponse = httpServletResponse;
     }
 
     public void registerUser(String username, String password) {
@@ -32,8 +39,7 @@ public class AuthService {
         this.userRepository.save(new UserBo(username, password));
     }
 
-
-    public Cookie loginUser(String username, String password) {
+    public void loginUser(String username, String password) {
         UserBo user = this.userRepository.findByUsername(username);
         if (user == null) {
             throw new LoginException("User does not exist");
@@ -42,22 +48,31 @@ public class AuthService {
             throw new LoginException("Incorrect password");
         }
         String sessionToken = randomString(32);
-        this.sessionList.put(user, sessionToken);
+        this.sessionList.put(sessionToken, user);
 
-        Cookie cookie = new Cookie("sessionId", sessionToken);
-        cookie.setPath("/");
+        Cookie cookie = new Cookie(SESSION_COOKIE_NAME, sessionToken);
         cookie.setMaxAge(60 * 60 * 24 * 365);
         cookie.isHttpOnly();
-        return cookie;
+        this.httpServletResponse.addCookie(cookie);
     }
 
-    public boolean checkToken(String token){
-        return this.sessionList.containsValue(token);
+    /**
+     * Permet de récupérer l'utilisateur courant, si null alors pas d'utilisateur
+     *
+     * @return null si pas d'utilisateur, sinon l'utilisateur courant
+     */
+    public UserBo getUser() {
+        Cookie cookie = Arrays.stream(this.httpServletRequest.getCookies())
+                .filter(c -> c.getName().equals(SESSION_COOKIE_NAME)).findAny().orElse(null);
+        if (cookie == null) {
+            return null;
+        }
+        UserBo userBo = this.sessionList.get(cookie.getValue());
+        return this.userRepository.findById(userBo.getId()).orElse(null);
     }
 
 
-
-    private final String randomString(int length) {
+    private String randomString(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder result = new StringBuilder();
         Random random = new Random();
@@ -67,9 +82,15 @@ public class AuthService {
         return result.toString();
     }
 
-    public Cookie logout() {
-        Cookie cookie = new Cookie("sessionId", null);
+
+    public void logoutUser() {
+        Arrays.stream(this.httpServletRequest.getCookies())
+                .filter(cookie -> cookie.getName().equals(SESSION_COOKIE_NAME)).forEach(cookie -> {
+                    this.sessionList.remove(cookie.getValue());
+                });
+        Cookie cookie = new Cookie(SESSION_COOKIE_NAME, null);
         cookie.setMaxAge(0);
-        return cookie;
+        this.httpServletResponse.addCookie(cookie);
+
     }
 }
