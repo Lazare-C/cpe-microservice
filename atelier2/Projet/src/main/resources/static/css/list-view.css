@@ -1,0 +1,128 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 490px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.tab {
+    width: 55%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px grey;
+
+}
+
+thead {
+    background-color: rgb(228 240 245);
+}
+
+th,
+td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+}
+
+tbody>tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+}
+
+.choice {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.selected-card {
+    display: flex;
+    flex-direction: column;
+    background-color: blanchedalmond;
+    height: auto;
+    width: 320px;
+    border-radius: 5px;
+    border: black 2px solid;
+    box-shadow: 0 4px 8px grey;
+    padding: 10px;
+}
+
+#image {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.attaque {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    flex-direction: row;
+    width: 75px;
+    align-items: center;
+    height: max-content;
+}
+
+.defense {
+    display: flex;
+    flex-direction: row;
+    width: 75px;
+    gap: 5px;
+    justify-content: flex-end;
+    align-items: center;
+    height: max-content;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.card-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-image hr {
+    width: 300px;
+}
+
+.card-footer {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.buy-btn {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buy-btn button {
+    width: 150px;
+    height: 30px;
+    background-color: #44b678;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.buy-btn button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}

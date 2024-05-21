@@ -20,24 +20,6 @@
     flex-direction: row;
 }
 
-.market{
-    display: flex;
-    border: solid 1px black;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.table{
-    border: black 2px solid;
-    font-size: 0.8rem;
-}
-
-#image{
-    width: 450px;
-    height: auto;
-}
-
 /* css/style.css */
 body {
     background-color: #f4f4f9;
