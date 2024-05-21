@@ -1,6 +1,7 @@
 package com.sp.model;
 import java.util.Objects;
 public class Card  {
+	private int userId;
 
 	private String name;
 	private String description;
