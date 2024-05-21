@@ -71,7 +71,10 @@ public class AuthService {
             return null;
         }
         UserBo userBo = this.sessionList.get(cookie.getValue());
-        return this.userRepository.findById(userBo.getId()).orElse(null);
+        return this.userRepository.findById(userBo.getId()).orElseThrow(() -> {
+            this.logoutUser();
+            return new LoginException("Session not found");
+        });
     }
 
 
