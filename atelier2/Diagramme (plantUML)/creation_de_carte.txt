@@ -1,0 +1,15 @@
+@startuml
+actor Client
+participant "Serveur" as Server
+participant "Base de données" as DB
+
+Client -> Server: Créer une carte
+Server -> DB: Ajouter carte
+DB --> Server: Confirmation ajout
+Server --> Client: Confirmation création
+
+Client -> Server: Demander toutes les cartes
+Server -> DB: Requête pour toutes les cartes
+DB --> Server: Renvoie des cartes
+Server --> Client: Affiche toutes les cartes
+@enduml
