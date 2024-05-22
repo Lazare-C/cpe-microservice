@@ -19,14 +19,11 @@ public class AuthService extends Observable {
     private final UserRepository userRepository;
     private final HttpServletRequest httpServletRequest;
     private final HttpServletResponse httpServletResponse;
-    private final UserService userService;
-    //private final CardService cardService;
 
-    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, UserService userService) {
+    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         this.userRepository = userRepository;
         this.httpServletRequest = httpServletRequest;
         this.httpServletResponse = httpServletResponse;
-        this.userService = userService;
     }
 
     public void registerUser(String username, String password) {
@@ -35,8 +32,8 @@ public class AuthService extends Observable {
         }
         //TODO: add hashing for password
         this.userRepository.save(new UserBo(username, password));
-        //Create five cards for the user
-        userService.generateUserCards(username);
+        setChanged();
+        notifyObservers(username);
     }
 
     public UserBo loginUser(String username, String password) {

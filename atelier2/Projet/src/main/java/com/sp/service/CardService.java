@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 @Service
-public class CardService {
+public class CardService implements Observer {
     private final CardRepository cardRepository;
     private final AuthService authService;
     private final UserRepository userRepository;
@@ -24,6 +26,7 @@ public class CardService {
         this.cardRepository = cardRepository;
         this.authService = authService;
         this.userRepository = userRepository;
+        this.authService.addObserver(this);
     }
 
     public List<Card> getUserCards(Long userId){
@@ -95,5 +98,12 @@ public class CardService {
         Card p=new Card( name,  description,  imgUrl,  familly,  affinity, Hp, energy, attack, defense, price);
         cardRepository.save(p);
         return p;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg instanceof String){
+            createUserInitialCards((String) arg);
+        }
     }
 }
