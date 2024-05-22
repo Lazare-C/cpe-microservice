@@ -62,6 +62,10 @@ let price = 1000;
 
                 $('tr.clickable-row').on('click', function() {
                     const id = $(this).data('id');
+                    let pokemonContainer = document.getElementById("detailsPokemon");
+                    if(pokemonContainer != null){
+                        pokemonContainer.style.display = "block";
+                    }
                     cardId = id;
                     $.ajax({
                         url: '/card/' + id,
@@ -73,12 +77,23 @@ let price = 1000;
                             $('#pokemonDefense').text(response.defense || 'unset');
                             $('#image').attr('src', response.image || 'https://www.pokepedia.fr/images/thumb/7/76/Pikachu-DEPS.png/800px-Pikachu-DEPS.png');
                             $('#pokemonDescription').text(response.description || 'unset');
+                            let sellButton = document.getElementById("sell-button");
+                            if(response.price != 0 ){
+                                sellButton.style.display = "none";
+                            } else {
+                                sellButton.style.display = "block";
+                            }
+
                         },
                         error: function(error) {
                             console.log('Error:', error);
                         }
                     });
                 });
+                let pokemonContainer = document.getElementById("detailsPokemon");
+                if(pokemonContainer != null){
+                    pokemonContainer.style.display = "none";
+                }
 
                 $('#sell-button').on('click', function() {
                     const formData = new FormData();

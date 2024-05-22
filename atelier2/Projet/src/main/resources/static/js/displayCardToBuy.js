@@ -61,6 +61,9 @@ let cardId;
 
                 $('tr.clickable-row').on('click', function() {
                     const id = $(this).data('id');
+                    if(pokemonContainer != null){
+                        pokemonContainer.style.display = "block";
+                    }
                     cardId = id;
                     $.ajax({
                         url: '/card/' + id,
@@ -72,30 +75,46 @@ let cardId;
                             $('#pokemonDefense').text(response.defense || 'unset');
                             $('#image').attr('src', response.image || 'https://www.pokepedia.fr/images/thumb/7/76/Pikachu-DEPS.png/800px-Pikachu-DEPS.png');
                             $('#pokemonDescription').text(response.description || 'unset');
+                            let buyButton = document.getElementById("Buy-button");
+                            if(response.userBoId == localStorage.getItem('id')){
+                                buyButton.style.display = "none";
+                            } else {
+                                buyButton.style.display = "block";
+                            }
                         },
                         error: function(error) {
                             console.log('Error:', error);
                         }
                     });
                 });
+                let pokemonContainer = document.getElementById("detailsPokemon");
+                if(pokemonContainer != null){
+                    pokemonContainer.style.display = "none";
+                }
 
                 $('#Buy-button').on('click', function() {
-                    const formData = new FormData();
-                    formData.append('id', cardId);
-                    $.ajax({
-                        url: '/card/buy', // URL de l'endpoint de vente des cartes
-                        method: 'POST',
-                        processData: false, // Ne pas traiter les données automatiquement
-                        contentType: false, // Ne pas définir automatiquement le type de contenu
-                        data: formData, // Envoyer les données FormData
-                        success: function(response) {
-                            console.log('achetée avec succès:', response);
-                            window.location.href = '/cardGame/welcomePage.html';
-                        },
-                        error: function(error) {
-                            console.log('Erreur lors de l\'achat:', error);
-                        }
-                    });
+                    if(localStorage.getItem('balance') >= 1000){
+
+                        const formData = new FormData();
+                        formData.append('id', cardId);
+                        $.ajax({
+                            url: '/card/buy', // URL de l'endpoint de vente des cartes
+                            method: 'POST',
+                            processData: false, // Ne pas traiter les données automatiquement
+                            contentType: false, // Ne pas définir automatiquement le type de contenu
+                            data: formData, // Envoyer les données FormData
+                            success: function(response) {
+                                console.log('achetée avec succès:', response);
+                                window.location.href = '/cardGame/welcomePage.html';
+                            },
+                            error: function(error) {
+                                console.log('Erreur lors de l\'achat:', error);
+                            }
+                        });
+
+                    } else {
+                        alert("Pas assez d'argent")
+                    }
                 });
             } else {
                 console.error('Invalid data format:', data);
