@@ -9,27 +9,27 @@
         <link rel="stylesheet" type="text/css" href="../css/lib/Semantic-UI-CSS-master/semantic.min.css" />
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
         <link rel="stylesheet" type="text/css" href="../css/login.css" />
-
     </head>
 
     <body>
         <div>
             <div class="column">
                 <p class="error-message"></p>
-                <form class="ui form" action="/login" method="POST">
+                <form id="loginForm" class="ui form" action="/login" method="POST">
                     <h3 class="ui dividing header">Login</h3>
                     <div class="field">
-                        <label>username</label>
+                        <label>Username</label>
                         <input type="text" name="username" placeholder="Username">
                     </div>
                     <div class="field">
                         <label>Password</label>
-                        <input type="password" name="password" placeholder="Passeword">
+                        <input type="password" name="password" placeholder="Password">
                     </div>
-                    <button class="ui button" type="submit" >Connect</button>
+                    <button class="ui button" type="submit">Connect</button>
                 </form>
                 <a href="/index.html" class="ui button cancel">Cancel</a>
             </div>
         </div>
+        <script src="../js/redirectLogin.js"></script>
     </body>
 </html>
