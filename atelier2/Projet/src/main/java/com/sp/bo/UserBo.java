@@ -1,4 +1,4 @@
-package com.sp.model.bo;
+package com.sp.bo;
 
 import jakarta.persistence.*;
 
@@ -21,6 +21,7 @@ UserBo {
 
     @Column(name = "balance", nullable = true)
     private BigDecimal balance;
+
 
     public UserBo(String username, String password) {
     this.username = username;

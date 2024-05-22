@@ -2,7 +2,7 @@ package com.sp.model;
 
 import java.math.BigDecimal;
 
-public class CardFormDTO  {
+public class CardFormDto {
 	private String name;
 	private String description;
 	private String imgUrl;
@@ -22,7 +22,7 @@ public class CardFormDTO  {
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-	public CardFormDTO() {
+	public CardFormDto() {
 		this.name = "";
 		this.description= "";
 		this.imgUrl="";
@@ -36,7 +36,7 @@ public class CardFormDTO  {
 	}
 
 
-	public CardFormDTO(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price, Long id) {
+	public CardFormDto(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price, Long id) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;

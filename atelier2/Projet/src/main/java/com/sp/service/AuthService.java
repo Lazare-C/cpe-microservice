@@ -1,7 +1,9 @@
 package com.sp.service;
 
+import com.sp.bo.UserBo;
 import com.sp.exception.LoginException;
-import com.sp.model.bo.UserBo;
+import com.sp.mapper.UserMapper;
+import com.sp.model.UserDto;
 import com.sp.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,24 +21,31 @@ public class AuthService extends Observable {
     private final UserRepository userRepository;
     private final HttpServletRequest httpServletRequest;
     private final HttpServletResponse httpServletResponse;
+    private final UserMapper userMapper;
 
-    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.httpServletRequest = httpServletRequest;
         this.httpServletResponse = httpServletResponse;
+        this.userMapper = userMapper;
     }
 
-    public void registerUser(String username, String password) {
+    public UserDto registerUser(String username, String password) {
         if (this.userRepository.findByUsername(username) != null) {
             throw new LoginException("User already exists");
         }
-        //TODO: add hashing for password
-        this.userRepository.save(new UserBo(username, password));
+        UserBo userBo = this.userRepository.saveAndFlush(new UserBo(username, password));
         setChanged();
         notifyObservers(username);
+        return this.userMapper.toDto(userBo);
     }
 
-    public UserBo loginUser(String username, String password) {
+    public UserDto loginUser(String username, String password) {
+
+        if (this.getUser() != null) {
+            this.sessionList.remove(this.httpServletRequest.getCookies()[0].getValue());
+        }
+
         UserBo user = this.userRepository.findByUsername(username);
         if (user == null) {
             throw new LoginException("User does not exist");
@@ -51,7 +60,7 @@ public class AuthService extends Observable {
         cookie.setMaxAge(60 * 60 * 24 * 365);
         cookie.isHttpOnly();
         this.httpServletResponse.addCookie(cookie);
-        return user;
+        return this.userMapper.toDto(user);
     }
 
     /**
@@ -69,7 +78,7 @@ public class AuthService extends Observable {
             return null;
         }
         UserBo userBo = this.sessionList.get(cookie.getValue());
-        if(userBo == null){
+        if (userBo == null) {
             return null;
         }
         return this.userRepository.findById(userBo.getId()).orElseThrow(() -> {
@@ -99,5 +108,10 @@ public class AuthService extends Observable {
         cookie.setMaxAge(0);
         this.httpServletResponse.addCookie(cookie);
 
+    }
+
+    public UserDto getUserDto() {
+        UserBo user = this.getUser();
+        return this.userMapper.toDto(user);
     }
 }

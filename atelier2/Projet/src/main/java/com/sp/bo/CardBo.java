@@ -1,13 +1,11 @@
-package com.sp.model;
-import com.sp.model.bo.UserBo;
+package com.sp.bo;
 import jakarta.persistence.*;
-import org.apache.catalina.User;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 @Entity
 @Table(name = "card")
-public class Card  {
+public class CardBo {
 
 
 	@Id
@@ -39,10 +37,10 @@ public class Card  {
 	private UserBo userBo;
 
 
-	public Card() {
+	public CardBo() {
 	}
 
-	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
+	public CardBo(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
@@ -55,7 +53,7 @@ public class Card  {
 		this.price = price;
 	}
 
-	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense) {
+	public CardBo(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
@@ -157,52 +155,52 @@ public class Card  {
 		return userBo;
 	}
 
-	public Card name(String name) {
+	public CardBo name(String name) {
 		setName(name);
 		return this;
 	}
 
-	public Card description(String description) {
+	public CardBo description(String description) {
 		setDescription(description);
 		return this;
 	}
 
-	public Card imgUrl(String imgUrl) {
+	public CardBo imgUrl(String imgUrl) {
 		setImgUrl(imgUrl);
 		return this;
 	}
 
-	public Card familly(String familly) {
+	public CardBo familly(String familly) {
 		setFamilly(familly);
 		return this;
 	}
 
-	public Card affinity(String affinity) {
+	public CardBo affinity(String affinity) {
 		setAffinity(affinity);
 		return this;
 	}
 
-	public Card Hp(String Hp) {
+	public CardBo Hp(String Hp) {
 		setHp(Hp);
 		return this;
 	}
 
-	public Card energy(String energy) {
+	public CardBo energy(String energy) {
 		setEnergy(energy);
 		return this;
 	}
 
-	public Card attack(int attack) {
+	public CardBo attack(int attack) {
 		setAttack(attack);
 		return this;
 	}
 
-	public Card defense(int defense) {
+	public CardBo defense(int defense) {
 		setDefense(defense);
 		return this;
 	}
 
-	public Card price(BigDecimal price) {
+	public CardBo price(BigDecimal price) {
 		setPrice(price);
 		return this;
 	}
@@ -211,10 +209,10 @@ public class Card  {
 	public boolean equals(Object o) {
 		if (o == this)
 			return true;
-		if (!(o instanceof Card)) {
+		if (!(o instanceof CardBo)) {
 			return false;
 		}
-		Card poney = (Card) o;
+		CardBo poney = (CardBo) o;
 		return Objects.equals(name, poney.name) && Objects.equals(description, poney.description) && Objects.equals(imgUrl, poney.imgUrl) && Objects.equals(familly, poney.familly) && Objects.equals(affinity, poney.affinity) && Objects.equals(Hp, poney.Hp) && Objects.equals(energy, poney.energy) && Objects.equals(attack, poney.attack) && Objects.equals(defense, poney.defense);
 	}
 

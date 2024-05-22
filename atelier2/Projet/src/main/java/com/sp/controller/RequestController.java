@@ -1,25 +1,25 @@
 package com.sp.controller;
 
+import com.sp.bo.CardBo;
 import com.sp.service.CardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.sp.model.Card;
-import com.sp.model.CardFormDTO;
-import com.sp.model.bo.UserBo;
+import com.sp.model.CardFormDto;
+import com.sp.bo.UserBo;
 import com.sp.service.AuthService;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller 
-public class RequestCrt {
+public class RequestController {
 
     private final CardService cardService;
     private final AuthService authService;
 
-    public RequestCrt(CardService cardService, AuthService authService){
+    public RequestController(CardService cardService, AuthService authService){
         this.cardService = cardService;
         this.authService = authService;
     }
@@ -44,28 +44,28 @@ public class RequestCrt {
 
     @RequestMapping(value = { "/addCard"}, method = RequestMethod.GET)
         public String addcard(Model model) {
-        	CardFormDTO cardForm = new CardFormDTO();
+        	CardFormDto cardForm = new CardFormDto();
         	model.addAttribute("cardForm", cardForm);
         	return "cardForm";
         }
 
     @RequestMapping(value = { "/addCard"}, method = RequestMethod.POST)
-    public String addCard(Model model, @ModelAttribute("cardForm") CardFormDTO cardForm) {
-    Card c= cardService.addCard( cardForm.getName(), cardForm.getDescription(),  cardForm.getImgUrl(),  cardForm.getFamilly(),  cardForm.getAffinity(),  cardForm.getHp(), cardForm.getEnergy(),  cardForm.getAttack(),  cardForm.getDefense(), cardForm.getPrice());
+    public String addCard(Model model, @ModelAttribute("cardForm") CardFormDto cardForm) {
+    CardBo c= cardService.addCard( cardForm.getName(), cardForm.getDescription(),  cardForm.getImgUrl(),  cardForm.getFamilly(),  cardForm.getAffinity(),  cardForm.getHp(), cardForm.getEnergy(),  cardForm.getAttack(),  cardForm.getDefense(), cardForm.getPrice());
         model.addAttribute("myCard",c );
         return "cardView";
     }
 
     @RequestMapping(value = { "/list"}, method = RequestMethod.GET)
     public String getList(Model model) {
-        List<Card> list = cardService.getUserCards(authService.getUser().getId());
+        List<CardBo> list = cardService.getUserCards(authService.getUser().getId());
         model.addAttribute("myList",list );
         return "listView";
     }
 
     @GetMapping("/list/{id}")
     public String getPokemonDetails(@PathVariable("id") Long id, Model model) {
-        Optional<Card> pokemonCard = cardService.findById(id);
+        Optional<CardBo> pokemonCard = cardService.findById(id);
 
         if (pokemonCard.isPresent()) {
             model.addAttribute("pokemonCard", pokemonCard.get());
