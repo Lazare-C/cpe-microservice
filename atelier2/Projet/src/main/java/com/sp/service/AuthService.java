@@ -8,13 +8,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Service
-public class AuthService {
+public class AuthService extends Observable {
 
     public final String SESSION_COOKIE_NAME = "sessionId";
     private final Map<String, UserBo> sessionList = new HashMap<>();
@@ -22,13 +19,14 @@ public class AuthService {
     private final UserRepository userRepository;
     private final HttpServletRequest httpServletRequest;
     private final HttpServletResponse httpServletResponse;
-    private final CardService cardService;
+    private final UserService userService;
+    //private final CardService cardService;
 
-    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, CardService cardService) {
+    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, UserService userService) {
         this.userRepository = userRepository;
         this.httpServletRequest = httpServletRequest;
         this.httpServletResponse = httpServletResponse;
-        this.cardService = cardService;
+        this.userService = userService;
     }
 
     public void registerUser(String username, String password) {
@@ -37,7 +35,8 @@ public class AuthService {
         }
         //TODO: add hashing for password
         this.userRepository.save(new UserBo(username, password));
-        cardService.createUserInitialCards(this.userRepository.findByUsername(username));
+        //Create five cards for the user
+        userService.generateUserCards(username);
     }
 
     public UserBo loginUser(String username, String password) {

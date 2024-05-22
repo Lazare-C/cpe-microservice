@@ -18,10 +18,12 @@ import java.util.List;
 public class CardService {
     private final CardRepository cardRepository;
     private final AuthService authService;
+    private final UserRepository userRepository;
 
-    public CardService(CardRepository cardRepository, AuthService authService) {
+    public CardService(CardRepository cardRepository, AuthService authService, UserRepository userRepository) {
         this.cardRepository = cardRepository;
         this.authService = authService;
+        this.userRepository = userRepository;
     }
 
     public List<Card> getUserCards(Long userId){
@@ -33,7 +35,8 @@ public class CardService {
         return userCardList;
     }
 
-    public void createUserInitialCards(UserBo user){
+    public void createUserInitialCards(String username){
+        UserBo user = userRepository.findByUsername(username);
         Card card1 = new Card("Card1", "Card1 description", "https://i.imgur.com/1.jpg", "Familly1", "Affinity1", "100", "100", 10, 10, BigDecimal.ZERO);
         Card card2 = new Card("Card2", "Card2 description", "https://i.imgur.com/2.jpg", "Familly2", "Affinity2", "200", "200", 20, 20, BigDecimal.ZERO);
         Card card3 = new Card("Card3", "Card3 description", "https://i.imgur.com/3.jpg", "Familly3", "Affinity3", "300", "300", 30, 30, BigDecimal.ZERO);
