@@ -39,6 +39,7 @@ public class RequestCrt {
 
     @RequestMapping(value = { "/login"}, method = RequestMethod.GET)
     public String login(Model model) {
+        model.addAttribute("errorMessage", "");
         return "login";
     }
 

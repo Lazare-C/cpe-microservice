@@ -29,9 +29,14 @@ public class AuthController {
 
         try {
             this.authService.registerUser(username, password);
+            model.addAttribute("errorMessage", "");
             return "login";
         } catch (Exception e) {
-            return e.getMessage();
+            if(e.getMessage() == "User already exists"){
+                model.addAttribute("errorMessage", e.getMessage());
+                return "login";
+            }
+            return "addUser";
         }
     }
 
