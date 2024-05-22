@@ -4,13 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3141aebd-c0c1-4e74-89c5-1b78fb0649be" name="Changes" comment="fix: updated AuthService">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="3141aebd-c0c1-4e74-89c5-1b78fb0649be" name="Changes" comment="fix: added conditional on endpoint">
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/model/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atelier2/Projet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/RequestCrt.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/controller/RequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/bo/CardBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/model/CardFormDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/model/CardFormDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/model/bo/UserBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/bo/UserBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/repository/CardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/repository/CardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/CardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/java/com/sp/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/css/lib/Semantic-UI-CSS-master/semantic.css" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/static/css/lib/Semantic-UI-CSS-master/semantic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/cardView.html" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/cardView.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/fragments/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/fragments/selectedCard.html" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/fragments/selectedCard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/listView.html" beforeDir="false" afterPath="$PROJECT_DIR$/atelier2/Projet/src/main/resources/templates/listView.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +39,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="com.intellij.jpb.JpaRepository" />
-        <option value="Class" />
         <option value="Dockerfile" />
+        <option value="com.intellij.jpb.NewRecord" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -49,12 +70,20 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1716282439" />
+                    <option name="branchName" value="bugfix/ChangeToRestArchi" />
+                    <option name="lastUsedInstant" value="1716377056" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1716282438" />
+                    <option name="lastUsedInstant" value="1716359211" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/login" />
+                    <option name="lastUsedInstant" value="1716301864" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1716282439" />
                   </RecentBranch>
                 </list>
               </option>
@@ -65,32 +94,36 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:Lazare-C/cpe-microservice.git",
-    "accountId": "aa73942c-d998-496e-b2c2-38c4f2dcd40c"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Lazare-C/cpe-microservice.git&quot;,
+    &quot;accountId&quot;: &quot;aa73942c-d998-496e-b2c2-38c4f2dcd40c&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "Lazare-C",
-    "repository": "cpe-microservice"
+    &quot;owner&quot;: &quot;Lazare-C&quot;,
+    &quot;repository&quot;: &quot;cpe-microservice&quot;
   }
-}]]></component>
+}</component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/6.1.6/spring-context-6.1.6-sources.jar!/org/springframework/stereotype/Controller.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/6.1.6/spring-context-6.1.6.jar!/org/springframework/stereotype/Controller.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -113,10 +146,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.SpWebAppStep1Application.executor": "Run",
+    "DtoCreateDialog.USE_JAVA_RECORDS_INITIAL_PROP_KEY": "true",
+    "HTTP Request.SpWebAppStep1Application | #1.executor": "Run",
     "HTTP Request.generated-requests | #10.executor": "Run",
+    "HTTP Request.generated-requests | #11.executor": "Run",
     "HTTP Request.generated-requests | #7.executor": "Run",
     "HTTP Request.generated-requests | #8.executor": "Run",
     "HTTP Request.generated-requests | #9.executor": "Run",
+    "Maven.Atelier2 [clean].executor": "Run",
+    "Maven.Atelier2 [validate].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -129,7 +167,7 @@
     "Spring Boot.SpWebAppStep1Application (1).executor": "Debug",
     "Spring Boot.SpWebAppStep1Application.executor": "Debug",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "#6 on develop",
+    "git-widget-placeholder": "bugfix/ChangeToRestArchi",
     "go.import.settings.migrated": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -142,34 +180,24 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "vcs.Git",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="Spring Boot.SpWebAppStep1Application">
-    <configuration name="SpWebAppStep1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.sp.SpWebAppStep1Application" />
-      <module name="cpe-microservice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
-      <kind />
+      <kind value="FILE" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | #10" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="10" requestIdentifier="#10" runType="Run single request">
+    <configuration name="SpWebAppStep1Application | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/SpWebAppStep1Application.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #11" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="11" requestIdentifier="#11" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="generated-requests | #7" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="7" requestIdentifier="#7" runType="Run single request">
@@ -200,8 +228,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.SpWebAppStep1Application" />
-      <item itemvalue="HTTP Request.generated-requests | #10" />
+      <item itemvalue="HTTP Request.SpWebAppStep1Application | #1" />
+      <item itemvalue="HTTP Request.generated-requests | #11" />
       <item itemvalue="HTTP Request.generated-requests | #7" />
       <item itemvalue="HTTP Request.generated-requests | #8" />
       <item itemvalue="HTTP Request.generated-requests | #9" />
@@ -209,11 +237,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | #10" />
+        <item itemvalue="HTTP Request.generated-requests | #11" />
+        <item itemvalue="HTTP Request.SpWebAppStep1Application | #1" />
         <item itemvalue="HTTP Request.generated-requests | #9" />
         <item itemvalue="HTTP Request.generated-requests | #8" />
         <item itemvalue="HTTP Request.generated-requests | #7" />
-        <item itemvalue="Application.SpWebAppStep1Application" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +263,9 @@
       <updated>1716282488660</updated>
       <workItem from="1716282494368" duration="615000" />
       <workItem from="1716283327367" duration="4227000" />
-      <workItem from="1716291482335" duration="5654000" />
+      <workItem from="1716291482335" duration="12010000" />
+      <workItem from="1716304914199" duration="7239000" />
+      <workItem from="1716369545074" duration="4798000" />
     </task>
     <task id="LOCAL-00001" summary="added auth endpoint and bd">
       <option name="closed" value="true" />
@@ -253,17 +283,63 @@
       <option name="project" value="LOCAL" />
       <updated>1716296334694</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix: updated AuthService">
+      <option name="closed" value="true" />
+      <created>1716297276193</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716297276193</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix: cookie not found">
+      <option name="closed" value="true" />
+      <created>1716301631737</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716301631737</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: login trouble">
+      <option name="closed" value="true" />
+      <created>1716302147887</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716302147887</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix: added conditional on endpoint">
+      <option name="closed" value="true" />
+      <created>1716302976033</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716302976033</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added jetbrain folder" />
     <MESSAGE value="added auth endpoint and bd" />
     <MESSAGE value="fix: updated AuthService" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: updated AuthService" />
+    <MESSAGE value="fix: cookie not found" />
+    <MESSAGE value="fix: login trouble" />
+    <MESSAGE value="fix: added conditional on endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: added conditional on endpoint" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

@@ -1,6 +1,6 @@
 package com.sp.repository;
 
-import com.sp.model.bo.UserBo;
+import com.sp.bo.UserBo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

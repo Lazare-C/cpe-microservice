@@ -2,14 +2,14 @@ package com.sp.model;
 
 import java.math.BigDecimal;
 
-public class CardFormDTO  {
+public class CardFormDto {
 	private String name;
 	private String description;
 	private String imgUrl;
 	private String familly;
 	private String affinity;
-	private String Hp;
-	private String energy;
+	private int hp;
+	private int energy;
 	private int attack;
 	private int defense;
 	private BigDecimal price;
@@ -22,27 +22,27 @@ public class CardFormDTO  {
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-	public CardFormDTO() {
+	public CardFormDto() {
 		this.name = "";
 		this.description= "";
 		this.imgUrl="";
 		this.familly="";
 		this.affinity="";
-		this.Hp="";
-		this.energy="";
+		this.hp = 0;
+		this.energy= 0;
 		this.attack=0;
 		this.defense=0;
 		this.price=null;
 	}
 
 
-	public CardFormDTO(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price, Long id) {
+	public CardFormDto(String name, String description, String imgUrl, String familly, String affinity, int hp, int energy, int attack, int defense, BigDecimal price, Long id) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
 		this.familly = familly;
 		this.affinity = affinity;
-		this.Hp = Hp;
+		this.hp = hp;
 		this.energy = energy;
 		this.attack = attack;
 		this.defense = defense;
@@ -84,19 +84,19 @@ public class CardFormDTO  {
 		this.affinity = affinity;
 	}
 
-	public String getHp() {
-		return this.Hp;
+	public int getHp() {
+		return this.hp;
 	}
 
-	public void setHp(String Hp) {
-		this.Hp = Hp;
+	public void setHp(int Hp) {
+		this.hp = Hp;
 	}
 
-	public String getEnergy() {
+	public int getEnergy() {
 		return this.energy;
 	}
 
-	public void setEnergy(String energy) {
+	public void setEnergy(int energy) {
 		this.energy = energy;
 	}
 
