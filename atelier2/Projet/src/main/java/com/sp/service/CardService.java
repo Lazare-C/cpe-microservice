@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Optional;
 
 @Service
 public class CardService implements Observer {
@@ -105,5 +106,9 @@ public class CardService implements Observer {
         if(arg instanceof String){
             createUserInitialCards((String) arg);
         }
+    }
+
+    public Optional<Card> findById(Long id){
+        return cardRepository.findById(id);
     }
 }

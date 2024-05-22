@@ -3,7 +3,6 @@ package com.sp.model;
 import java.math.BigDecimal;
 
 public class CardFormDTO  {
-
 	private String name;
 	private String description;
 	private String imgUrl;
@@ -37,7 +36,7 @@ public class CardFormDTO  {
 	}
 
 
-	public CardFormDTO(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
+	public CardFormDTO(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price, Long id) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
@@ -123,6 +122,4 @@ public class CardFormDTO  {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-
-
 }

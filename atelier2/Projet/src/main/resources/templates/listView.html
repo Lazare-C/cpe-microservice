@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>View List</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/list-view.css}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}">
@@ -23,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="card : ${myList}">
+            <tr th:each="card : ${myList}" th:attr="data-id=${card.id}" class="clickable-row">
                 <th scope="row" th:utext="${card.name}"></th>
                 <td th:utext="${card.description}"></td>
                 <td th:utext="${card.familly}"></td>
@@ -35,7 +37,7 @@
         </tbody>
     </table>
 
-    <div th:replace="~{fragments/selectedCard :: selectedCard}">
+    <div id="detailsPokemon">
     </div>
 </div>
 </body>

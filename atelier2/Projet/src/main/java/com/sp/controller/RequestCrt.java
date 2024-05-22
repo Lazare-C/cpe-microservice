@@ -3,9 +3,7 @@ package com.sp.controller;
 import com.sp.service.CardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import com.sp.model.Card;
 import com.sp.model.CardFormDTO;
@@ -13,6 +11,7 @@ import com.sp.model.bo.UserBo;
 import com.sp.service.AuthService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller 
 public class RequestCrt {
@@ -62,6 +61,19 @@ public class RequestCrt {
         List<Card> list = cardService.getUserCards(authService.getUser().getId());
         model.addAttribute("myList",list );
         return "listView";
+    }
+
+    @GetMapping("/list/{id}")
+    public String getPokemonDetails(@PathVariable("id") Long id, Model model) {
+        Optional<Card> pokemonCard = cardService.findById(id);
+
+        if (pokemonCard.isPresent()) {
+            model.addAttribute("pokemonCard", pokemonCard.get());
+            return "fragments/selectedCard :: selectedCard";  // Retourne le nom du template Thymeleaf
+        } else {
+            // Gérez le cas où la carte n'est pas trouvée, par exemple, en retournant une page d'erreur ou un message
+            return "cardNotFound";  // Retourne une page indiquant que la carte n'a pas été trouvée
+        }
     }
 
 }

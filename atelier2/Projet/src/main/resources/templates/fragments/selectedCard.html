@@ -3,13 +3,13 @@
         <div class="card-header">
 
             <div class="attaque">
-                <img id="attack" class="icon" src="../../static/img/eclair.png" alt="">
-                <p>50</p>
+                <img id="attack" class="icon" th:src="@{/img/eclair.png}" alt="">
+                <p th:text="${pokemonCard.id}"></p>
             </div>
-            <div class="name">Pikachu</div>
+            <div th:text="${pokemonCard.name}" class="name"></div>
             <div class="defense">
-                <p>100</p>
-                <img id="def" class="icon" src="../../static/img/coeur.png" alt="">
+                <p th:text="${pokemonCard.defense}"></p>
+                <img id="def" class="icon" th:src="@{/img/coeur.png}" alt="">
             </div>
         </div>
 
@@ -20,9 +20,7 @@
         </div>
 
         <div class="card-footer">
-            <div class="description">
-                Orci varius natoque penatibus et magnis dis parturient montes,
-                . Sed ultrices enim
+            <div th:text="${pokemonCard.description}" class="description">
             </div>
         </div>
 
