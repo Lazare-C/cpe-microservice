@@ -12,7 +12,7 @@ import java.util.List;
 public interface CardRepository extends JpaRepository<Card, Long> {
 
     @Query("select c from Card c where c.userBo.id = ?1")
-    List<Card> getUserCards(int userId);
+    List<Card> getUserCards(Long userId);
 
     @Query("select c from Card c where c.price > 0")
     List<Card> getCardsToSell();

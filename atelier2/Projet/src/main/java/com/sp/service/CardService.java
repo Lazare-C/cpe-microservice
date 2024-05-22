@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
 
-
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -21,7 +21,7 @@ public class CardService {
         this.cardRepository = cardRepository;
     }
 
-    public List<Card> getUserCards(int userId){
+    public List<Card> getUserCards(Long userId){
         List<Card> userCardList = cardRepository.getUserCards(userId);
         if(userCardList.isEmpty()){
             throw new CardManagerException("User has no cards");
@@ -36,5 +36,14 @@ public class CardService {
 
     public void buyCard(Card card){
 
+    }
+
+    public void addCard(Card card){
+        cardRepository.save(card);
+    }
+    public Card addCard(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
+        Card p=new Card( name,  description,  imgUrl,  familly,  affinity, Hp, energy, attack, defense, price);
+        cardRepository.save(p);
+        return p;
     }
 }
