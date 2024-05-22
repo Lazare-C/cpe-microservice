@@ -3,6 +3,7 @@ import com.sp.model.bo.UserBo;
 import jakarta.persistence.*;
 import org.apache.catalina.User;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 @Entity
 @Table(name = "card")
@@ -32,7 +33,7 @@ public class Card  {
 	@Column(name = "defense", nullable = false)
 	private int defense;
 	@Column(name = "price", nullable = true)
-	private double price;
+	private BigDecimal price;
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = true)
 	private UserBo userBo;
@@ -41,7 +42,7 @@ public class Card  {
 	public Card() {
 	}
 
-	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, String price) {
+	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
@@ -52,6 +53,18 @@ public class Card  {
 		this.attack = attack;
 		this.defense = defense;
 		this.price = price;
+	}
+
+	public Card(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense) {
+		this.name = name;
+		this.description = description;
+		this.imgUrl = imgUrl;
+		this.familly = familly;
+		this.affinity = affinity;
+		this.Hp = Hp;
+		this.energy = energy;
+		this.attack = attack;
+		this.defense = defense;
 	}
 
 	public String getName() {
@@ -125,11 +138,11 @@ public class Card  {
 	public void setDefense(int defense) {
 		this.defense = defense;
 	}
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
@@ -178,7 +191,7 @@ public class Card  {
 		return this;
 	}
 
-	public Card price(String price) {
+	public Card price(BigDecimal price) {
 		setPrice(price);
 		return this;
 	}

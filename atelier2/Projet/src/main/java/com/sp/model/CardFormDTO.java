@@ -1,5 +1,7 @@
 package com.sp.model;
 
+import java.math.BigDecimal;
+
 public class CardFormDTO  {
 
 	private String name;
@@ -11,7 +13,7 @@ public class CardFormDTO  {
 	private String energy;
 	private int attack;
 	private int defense;
-	private String price;
+	private BigDecimal price;
 
 
 
@@ -31,11 +33,11 @@ public class CardFormDTO  {
 		this.energy="";
 		this.attack=0;
 		this.defense=0;
-		this.price="";
+		this.price=null;
 	}
 
 
-	public CardFormDTO(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, String price) {
+	public CardFormDTO(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
 		this.name = name;
 		this.description = description;
 		this.imgUrl = imgUrl;
@@ -114,11 +116,11 @@ public class CardFormDTO  {
 	public void setDefense(int defense) {
 		this.defense = defense;
 	}
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

@@ -1,5 +1,6 @@
 package com.sp.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -49,7 +50,7 @@ public class cardDAO {
 		return this.myCardList.get(index);
 	}
 
-	public Card addCard(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, String price) {
+	public Card addCard(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
 		Card p=new Card( name,  description,  imgUrl,  familly,  affinity, Hp, energy, attack, defense, price);
 		this.myCardList.add(p);
 		return p;
