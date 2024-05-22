@@ -75,6 +75,7 @@ public class CardService implements Observer {
         }
         authService.getUser().setBalance(authService.getUser().getBalance().subtract(card.getPrice()));
         card.getOwner().setBalance(card.getOwner().getBalance().add(card.getPrice()));
+        card.setPrice(BigDecimal.ZERO);
         card.setOwner(authService.getUser());
         cardRepository.save(card);
     }
