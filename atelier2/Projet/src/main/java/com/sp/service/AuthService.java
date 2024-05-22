@@ -22,21 +22,22 @@ public class AuthService {
     private final UserRepository userRepository;
     private final HttpServletRequest httpServletRequest;
     private final HttpServletResponse httpServletResponse;
+    private final CardService cardService;
 
-    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, CardService cardService) {
         this.userRepository = userRepository;
         this.httpServletRequest = httpServletRequest;
         this.httpServletResponse = httpServletResponse;
+        this.cardService = cardService;
     }
 
     public void registerUser(String username, String password) {
         if (this.userRepository.findByUsername(username) != null) {
             throw new LoginException("User already exists");
         }
-        //TODO: add conditional to check if username is already taken
-
         //TODO: add hashing for password
         this.userRepository.save(new UserBo(username, password));
+        cardService.createUserInitialCards(this.userRepository.findByUsername(username));
     }
 
     public UserBo loginUser(String username, String password) {
