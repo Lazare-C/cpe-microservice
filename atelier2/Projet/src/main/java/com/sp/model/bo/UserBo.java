@@ -2,6 +2,8 @@ package com.sp.model.bo;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "user")
 public class
@@ -16,6 +18,9 @@ UserBo {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "balance", nullable = true)
+    private BigDecimal balance;
 
     public UserBo(String username, String password) {
     this.username = username;
@@ -48,4 +53,13 @@ UserBo {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
 }

@@ -146,6 +146,14 @@ public class Card  {
 		this.price = price;
 	}
 
+	public void setOwner(UserBo userBo) {
+		this.userBo = userBo;
+	}
+
+	public UserBo getOwner() {
+		return userBo;
+	}
+
 	public Card name(String name) {
 		setName(name);
 		return this;

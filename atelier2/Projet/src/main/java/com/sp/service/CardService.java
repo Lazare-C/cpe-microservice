@@ -16,9 +16,11 @@ import java.util.List;
 @Service
 public class CardService {
     private final CardRepository cardRepository;
+    private final AuthService authService;
 
-    public CardService(CardRepository cardRepository) {
+    public CardService(CardRepository cardRepository, AuthService authService) {
         this.cardRepository = cardRepository;
+        this.authService = authService;
     }
 
     public List<Card> getUserCards(Long userId){
@@ -35,7 +37,15 @@ public class CardService {
     }
 
     public void buyCard(Card card){
+        authService.getUser().setBalance(authService.getUser().getBalance().subtract(card.getPrice()));
+        card.getOwner().setBalance(card.getOwner().getBalance().add(card.getPrice()));
+        card.setOwner(authService.getUser());
+        cardRepository.save(card);
+    }
 
+    public void sellCard(Card card, BigDecimal price){
+        card.setPrice(price);
+        cardRepository.save(card);
     }
 
     public void addCard(Card card){
