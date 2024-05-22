@@ -18,6 +18,6 @@
         .catch(error => {
             // En cas d'erreur, redirige vers la page de login
             console.error('Erreur:', error);
-            // window.location.href = '/index.html';
+            window.location.href = '/index.html';
         });
 })();

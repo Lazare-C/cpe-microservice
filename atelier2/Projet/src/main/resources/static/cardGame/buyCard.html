@@ -8,6 +8,7 @@
     <script src="../js/script.js"></script>
     <!-- Deuxieme verification en plus de celle des apis -->
     <script src="../js/authVerif.js"></script>
+    <!-- <script src="../js/displayList.js"></script> -->
 </head>
 <body>
 <div>
@@ -27,7 +28,7 @@
                 <th scope="col">Price</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="list-of-card">
             <tr th:each="card : ${myList}" th:attr="data-id=${card.id}" class="clickable-row">
                 <th scope="row" th:utext="${card.name}"></th>
                 <td th:utext="${card.description}"></td>
