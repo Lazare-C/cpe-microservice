@@ -87,6 +87,10 @@ public class AuthService extends Observable {
         });
     }
 
+    public Optional<UserBo> getUserOptional() {
+        return Optional.ofNullable(this.getUser());
+    }
+
 
     private String randomString(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

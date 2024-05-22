@@ -44,11 +44,11 @@ public class CardService implements Observer {
 
     public void createUserInitialCards(String username) {
         UserBo user = userRepository.findByUsername(username);
-        CardBo cardBo1 = new CardBo("Card1", "Card1 description", "https://i.imgur.com/1.jpg", "Familly1", "Affinity1", "100", "100", 10, 10, BigDecimal.ZERO);
-        CardBo cardBo2 = new CardBo("Card2", "Card2 description", "https://i.imgur.com/2.jpg", "Familly2", "Affinity2", "200", "200", 20, 20, BigDecimal.ZERO);
-        CardBo cardBo3 = new CardBo("Card3", "Card3 description", "https://i.imgur.com/3.jpg", "Familly3", "Affinity3", "300", "300", 30, 30, BigDecimal.ZERO);
-        CardBo cardBo4 = new CardBo("Card4", "Card4 description", "https://i.imgur.com/4.jpg", "Familly4", "Affinity4", "400", "400", 40, 40, BigDecimal.ZERO);
-        CardBo cardBo5 = new CardBo("Card5", "Card5 description", "https://i.imgur.com/5.jpg", "Familly5", "Affinity5", "500", "500", 50, 50, BigDecimal.ZERO);
+        CardBo cardBo1 = new CardBo("Card1", "Card1 description", "https://i.imgur.com/1.jpg", "Familly1", "Affinity1", 100, 100, 10, 10, BigDecimal.ZERO);
+        CardBo cardBo2 = new CardBo("Card2", "Card2 description", "https://i.imgur.com/2.jpg", "Familly2", "Affinity2", 200, 200, 20, 20, BigDecimal.ZERO);
+        CardBo cardBo3 = new CardBo("Card3", "Card3 description", "https://i.imgur.com/3.jpg", "Familly3", "Affinity3", 300, 300, 30, 30, BigDecimal.ZERO);
+        CardBo cardBo4 = new CardBo("Card4", "Card4 description", "https://i.imgur.com/4.jpg", "Familly4", "Affinity4", 400, 400, 40, 40, BigDecimal.ZERO);
+        CardBo cardBo5 = new CardBo("Card5", "Card5 description", "https://i.imgur.com/5.jpg", "Familly5", "Affinity5", 500, 500, 50, 50, BigDecimal.ZERO);
         cardBo1.setOwner(user);
         cardBo2.setOwner(user);
         cardBo3.setOwner(user);
@@ -105,8 +105,8 @@ public class CardService implements Observer {
         cardRepository.save(cardBo);
     }
 
-    public CardBo addCard(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
-        CardBo p = new CardBo(name, description, imgUrl, familly, affinity, Hp, energy, attack, defense, price);
+    public CardBo addCard(String name, String description, String imgUrl, String familly, String affinity, int hp, int energy, int attack, int defense, BigDecimal price) {
+        CardBo p = new CardBo(name, description, imgUrl, familly, affinity, hp, energy, attack, defense, price);
         cardRepository.save(p);
         return p;
     }
@@ -123,8 +123,9 @@ public class CardService implements Observer {
     }
 
     public List<CardDto> getMyCards() {
-        this.authService.getUser();
-        List<CardBo> cards = this.getUserCards(this.authService.getUser().getId());
+        UserBo userBo = this.authService.getUserOptional()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        List<CardBo> cards = this.getUserCards(userBo.getId());
         return cardMapper.toDtoList(cards);
     }
 
