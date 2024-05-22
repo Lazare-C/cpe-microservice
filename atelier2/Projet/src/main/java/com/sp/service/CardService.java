@@ -61,11 +61,13 @@ public class CardService implements Observer {
         cardRepository.save(cardBo5);
     }
 
-    public List<CardBo> cardToSell() {
-        return cardRepository.getCardsToSell();
+    public List<CardDto> cardToSell() {
+        return this.cardMapper.toDtoList(cardRepository.getCardsToSell());
     }
 
-    public void buyCard(CardBo cardBo) {
+    public CardDto buyCard(Long cardId) {
+        CardBo cardBo = this.cardRepository.findById(cardId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
         if (authService.getUser() == null) {
             throw new LoginException("User not logged in");
         } else if (authService.getUser().getBalance().compareTo(cardBo.getPrice()) < 0) {
@@ -79,10 +81,14 @@ public class CardService implements Observer {
         cardBo.getOwner().setBalance(cardBo.getOwner().getBalance().add(cardBo.getPrice()));
         cardBo.setPrice(BigDecimal.ZERO);
         cardBo.setOwner(authService.getUser());
-        cardRepository.save(cardBo);
+        cardBo = cardRepository.saveAndFlush(cardBo);
+        return this.cardMapper.toDto(cardBo);
     }
 
-    public void sellCard(CardBo cardBo, BigDecimal price) {
+    public CardDto sellCard(Long cardId, BigDecimal price) {
+        CardBo cardBo = this.cardRepository.findById(cardId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
+
         if (authService.getUser() == null) {
             throw new LoginException("User not logged in");
         } else if (!cardBo.getOwner().getId().equals(authService.getUser().getId())) {
@@ -91,7 +97,8 @@ public class CardService implements Observer {
             throw new CardManagerException("Price must be positive");
         }
         cardBo.setPrice(price);
-        cardRepository.save(cardBo);
+        cardBo = cardRepository.saveAndFlush(cardBo);
+        return this.cardMapper.toDto(cardBo);
     }
 
     public void addCard(CardBo cardBo) {
