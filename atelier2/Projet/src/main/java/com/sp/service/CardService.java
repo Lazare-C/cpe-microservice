@@ -37,7 +37,10 @@ public class CardService {
     }
 
     public void buyCard(Card card){
-        if(authService.getUser().getBalance().compareTo(card.getPrice()) < 0){
+        if(authService.getUser() == null) {
+            throw new LoginException("User not logged in");
+        }
+        else if(authService.getUser().getBalance().compareTo(card.getPrice()) < 0){
             throw new CardManagerException("Not enough money");
         } else if(card.getOwner().getId().equals(authService.getUser().getId())){
             throw new CardManagerException("You already own this card");
@@ -51,7 +54,10 @@ public class CardService {
     }
 
     public void sellCard(Card card, BigDecimal price){
-        if(!card.getOwner().getId().equals(authService.getUser().getId())){
+        if(authService.getUser() == null) {
+            throw new LoginException("User not logged in");
+        }
+        else if(!card.getOwner().getId().equals(authService.getUser().getId())){
             throw new CardManagerException("You do not own this card");
         } else if (price.compareTo(BigDecimal.ZERO) < 0){
             throw new CardManagerException("Price must be positive");
