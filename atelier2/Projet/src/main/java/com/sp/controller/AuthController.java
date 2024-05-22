@@ -3,10 +3,9 @@ package com.sp.controller;
 import com.sp.model.UserDto;
 import com.sp.service.AuthService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class AuthController {
 
     private final AuthService authService;
@@ -23,7 +22,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestParam("username") String username, @RequestParam("password") String password) {
-
         return ResponseEntity.ok(this.authService.loginUser(username, password));
 
     }

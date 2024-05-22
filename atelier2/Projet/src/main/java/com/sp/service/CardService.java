@@ -1,13 +1,16 @@
 package com.sp.service;
 
-import com.sp.exception.CardManagerException;
-import com.sp.exception.LoginException;
 import com.sp.bo.CardBo;
 import com.sp.bo.UserBo;
+import com.sp.exception.CardManagerException;
+import com.sp.exception.LoginException;
+import com.sp.mapper.CardMapper;
+import com.sp.model.CardDto;
 import com.sp.repository.CardRepository;
 import com.sp.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,24 +23,26 @@ public class CardService implements Observer {
     private final CardRepository cardRepository;
     private final AuthService authService;
     private final UserRepository userRepository;
+    private final CardMapper cardMapper;
 
-    public CardService(CardRepository cardRepository, AuthService authService, UserRepository userRepository) {
+    public CardService(CardRepository cardRepository, AuthService authService, UserRepository userRepository, CardMapper cardMapper) {
         this.cardRepository = cardRepository;
         this.authService = authService;
         this.userRepository = userRepository;
         this.authService.addObserver(this);
+        this.cardMapper = cardMapper;
     }
 
-    public List<CardBo> getUserCards(Long userId){
+    public List<CardBo> getUserCards(Long userId) {
         List<CardBo> userCardBoList = cardRepository.getUserCards(userId);
-        if(userCardBoList.isEmpty()){
+        if (userCardBoList.isEmpty()) {
             throw new CardManagerException("User has no cards");
         }
 
         return userCardBoList;
     }
 
-    public void createUserInitialCards(String username){
+    public void createUserInitialCards(String username) {
         UserBo user = userRepository.findByUsername(username);
         CardBo cardBo1 = new CardBo("Card1", "Card1 description", "https://i.imgur.com/1.jpg", "Familly1", "Affinity1", "100", "100", 10, 10, BigDecimal.ZERO);
         CardBo cardBo2 = new CardBo("Card2", "Card2 description", "https://i.imgur.com/2.jpg", "Familly2", "Affinity2", "200", "200", 20, 20, BigDecimal.ZERO);
@@ -56,19 +61,18 @@ public class CardService implements Observer {
         cardRepository.save(cardBo5);
     }
 
-    public List<CardBo> cardToSell(){
+    public List<CardBo> cardToSell() {
         return cardRepository.getCardsToSell();
     }
 
-    public void buyCard(CardBo cardBo){
-        if(authService.getUser() == null) {
+    public void buyCard(CardBo cardBo) {
+        if (authService.getUser() == null) {
             throw new LoginException("User not logged in");
-        }
-        else if(authService.getUser().getBalance().compareTo(cardBo.getPrice()) < 0){
+        } else if (authService.getUser().getBalance().compareTo(cardBo.getPrice()) < 0) {
             throw new CardManagerException("Not enough money");
-        } else if(cardBo.getOwner().getId().equals(authService.getUser().getId())){
+        } else if (cardBo.getOwner().getId().equals(authService.getUser().getId())) {
             throw new CardManagerException("You already own this cardBo");
-        } else if(cardBo.getPrice().compareTo(BigDecimal.ZERO) == 0){
+        } else if (cardBo.getPrice().compareTo(BigDecimal.ZERO) == 0) {
             throw new CardManagerException("CardBo is not for sale");
         }
         authService.getUser().setBalance(authService.getUser().getBalance().subtract(cardBo.getPrice()));
@@ -78,36 +82,48 @@ public class CardService implements Observer {
         cardRepository.save(cardBo);
     }
 
-    public void sellCard(CardBo cardBo, BigDecimal price){
-        if(authService.getUser() == null) {
+    public void sellCard(CardBo cardBo, BigDecimal price) {
+        if (authService.getUser() == null) {
             throw new LoginException("User not logged in");
-        }
-        else if(!cardBo.getOwner().getId().equals(authService.getUser().getId())){
+        } else if (!cardBo.getOwner().getId().equals(authService.getUser().getId())) {
             throw new CardManagerException("You do not own this cardBo");
-        } else if (price.compareTo(BigDecimal.ZERO) < 0){
+        } else if (price.compareTo(BigDecimal.ZERO) < 0) {
             throw new CardManagerException("Price must be positive");
         }
         cardBo.setPrice(price);
         cardRepository.save(cardBo);
     }
 
-    public void addCard(CardBo cardBo){
+    public void addCard(CardBo cardBo) {
         cardRepository.save(cardBo);
     }
+
     public CardBo addCard(String name, String description, String imgUrl, String familly, String affinity, String Hp, String energy, int attack, int defense, BigDecimal price) {
-        CardBo p=new CardBo( name,  description,  imgUrl,  familly,  affinity, Hp, energy, attack, defense, price);
+        CardBo p = new CardBo(name, description, imgUrl, familly, affinity, Hp, energy, attack, defense, price);
         cardRepository.save(p);
         return p;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if(arg instanceof String){
+        if (arg instanceof String) {
             createUserInitialCards((String) arg);
         }
     }
 
-    public Optional<CardBo> findById(Long id){
+    public Optional<CardBo> findById(Long id) {
         return cardRepository.findById(id);
+    }
+
+    public List<CardDto> getMyCards() {
+        this.authService.getUser();
+        List<CardBo> cards = this.getUserCards(this.authService.getUser().getId());
+        return cardMapper.toDtoList(cards);
+    }
+
+    public CardDto getCardById(Long id) {
+        CardBo cardBo = this.cardRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
+        return this.cardMapper.toDto(cardBo);
     }
 }

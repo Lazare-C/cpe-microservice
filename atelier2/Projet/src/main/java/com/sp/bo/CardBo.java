@@ -34,7 +34,7 @@ public class CardBo {
 	private BigDecimal price;
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = true)
-	private UserBo userBo;
+	private UserBo owner;
 
 
 	public CardBo() {
@@ -148,11 +148,11 @@ public class CardBo {
 	}
 
 	public void setOwner(UserBo userBo) {
-		this.userBo = userBo;
+		this.owner = userBo;
 	}
 
 	public UserBo getOwner() {
-		return userBo;
+		return owner;
 	}
 
 	public CardBo name(String name) {
