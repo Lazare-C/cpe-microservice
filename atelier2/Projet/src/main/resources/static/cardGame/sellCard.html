@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Buy Cards</title>
+    <link rel="stylesheet" type="text/css" href="../css/list-view.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Deuxieme verification en plus de celle des apis -->
+    <script src="../js/authVerif.js"></script>
+    <script src="../js/displayUserCard.js"></script>
+</head>
+<body>
+<div>
+    <h1> Liste des cartes </h1>
+</div>
+<div class="sub-header"><h2 id="header-user-balance"> 0 $ </h2> <span><h2 id="header-name">...</h2> </span></div> <div><button id="Logout-button" >Logout</button></div><a href="/cardGame/welcomePage.html">Home</a>
+<div class="container">
+    <table id="tableau" class="tab">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Family</th>
+                <th scope="col">Affinity</th>
+                <th scope="col">Energy</th>
+                <th scope="col">HP</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody id="list-of-card">
+        </tbody>
+    </table>
+
+    <div id="detailsPokemon">
+        <div class="choice">
+            <div class="selected-card">
+                <div class="card-header">
+                    <div class="attaque">
+                        <img id="attack" class="icon" src="/img/eclair.png" alt="">
+                        <p id="pokemonId"></p>
+                    </div>
+                    <div id="pokemonName" class="name"></div>
+                    <div class="defense">
+                        <p id="pokemonDefense"></p>
+                        <img id="def" class="icon" src="/img/coeur.png" alt="">
+                    </div>
+                </div>
+                <div class="card-image">
+                    <img id="image" src="https://www.pokepedia.fr/images/thumb/7/76/Pikachu-DEPS.png/800px-Pikachu-DEPS.png" alt="">
+                    <hr>
+                </div>
+                <div class="card-footer">
+                    <div id="pokemonDescription" class="description"></div>
+                </div>
+            </div>
+            <div id="sell-button" class="buy-btn">
+                <button>Sell</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../js/logoutButton.js"></script>

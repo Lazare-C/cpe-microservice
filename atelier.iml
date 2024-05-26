@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="CheckStyle-IDEA-Module" serialisationVersion="2">
+    <option name="activeLocationsIds" />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/atelier1/2.dynamique">
+      <sourceFolder url="file://$MODULE_DIR$/atelier1/2.dynamique/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/atelier1/2.dynamique/src/test/java" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/atelier2/Projet">
+      <sourceFolder url="file://$MODULE_DIR$/atelier2/Projet/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/atelier2/Projet/src/test/java" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

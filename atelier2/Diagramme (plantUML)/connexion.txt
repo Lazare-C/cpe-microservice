@@ -1,0 +1,10 @@
+@startuml
+actor Client
+participant "Serveur" as Server
+participant "Base de données" as DB
+
+Client -> Server: Connexion
+Server -> DB: Vérifier utilisateur
+DB --> Server: Utilisateur valide
+Server --> Client: Connexion réussie
+@enduml

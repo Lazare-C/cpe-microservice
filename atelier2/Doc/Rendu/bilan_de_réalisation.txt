@@ -1,0 +1,11 @@
+Notre application permet :
+1. La Gestion de Creation de compte à l'aide d'un formulaire puis on est rediriger vers la page de connexion.
+2. Obtention des 5 cartes et de l'argent
+3. La Gestion de connexion via le formulaire qui nous redirige ensuite vers la page d'accueil.
+4. Affichage sur la page principale du menu ainsi que des infos utilisateurs
+5. Gestion d'achat de carte, affichage de la liste des carte en vente + possibilité de cliquer pour afficher le detail + possibilité d'acheter la carte si le userID qui la mis en vente n'est pas le notre
+6. Gestion de la mise en vente de carte. Affichage de la liste de nos carte + affichage du details de la carte cliquer + affichage du boutton mise en vente si elle n'est pas deja en vente. (Les cartes ont un prix par defaut)
+
+
+- Chaque API pour l'user, l'achat et la vente sont proteger niveau backend en virifiant que l'on soit bien connecter.
+- Les pages static welcomepage, achat et vente ont aussi leurs accès verifier en js pour rediriger l'utilisateur vers le form de creation de compte si il n'est pas connecté.
