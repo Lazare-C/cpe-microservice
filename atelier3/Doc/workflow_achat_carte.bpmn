@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1solp5k" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.23.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="Process_12scg7m" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_16vnk6i</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Card_OwnerID_Update" name="Card OwnerID Update" camunda:delegateExpression="#{cardOwnerIdUpdateAdapter}">
+      <bpmn:incoming>Flow_0k56dxh</bpmn:incoming>
+      <bpmn:outgoing>Flow_11n8wtr</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Users_Update_Balance" name="Users Update Balance" camunda:delegateExpression="#{userUpdateBalanceAdapter}">
+      <bpmn:incoming>Flow_1q6fvsc</bpmn:incoming>
+      <bpmn:outgoing>Flow_18nm43m</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Rollback_Users_Update_Balance" name="Rollback Users Update Balance" isForCompensation="true" camunda:delegateExpression="#{rollbackUsersUpdateBalanceAdapter}" />
+    <bpmn:serviceTask id="Rollback_Card_OwnerID_Update" name="Rollback Card OwnerID Update" isForCompensation="true" camunda:delegateExpression="#{rollbackCardOwnerIdUpdateAdapter}" />
+    <bpmn:parallelGateway id="Gateway_12rpvz4">
+      <bpmn:incoming>Flow_16vnk6i</bpmn:incoming>
+      <bpmn:outgoing>Flow_0k56dxh</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1q6fvsc</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:parallelGateway id="Gateway_0z3yqep">
+      <bpmn:incoming>Flow_18nm43m</bpmn:incoming>
+      <bpmn:incoming>Flow_11n8wtr</bpmn:incoming>
+      <bpmn:outgoing>Flow_1n59ofh</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_16vnk6i" sourceRef="StartEvent_1" targetRef="Gateway_12rpvz4" />
+    <bpmn:sequenceFlow id="Flow_0k56dxh" sourceRef="Gateway_12rpvz4" targetRef="Card_OwnerID_Update" />
+    <bpmn:sequenceFlow id="Flow_1q6fvsc" sourceRef="Gateway_12rpvz4" targetRef="Users_Update_Balance" />
+    <bpmn:sequenceFlow id="Flow_18nm43m" sourceRef="Users_Update_Balance" targetRef="Gateway_0z3yqep" />
+    <bpmn:sequenceFlow id="Flow_11n8wtr" sourceRef="Card_OwnerID_Update" targetRef="Gateway_0z3yqep" />
+    <bpmn:endEvent id="Event_13omvhu">
+      <bpmn:incoming>Flow_1n59ofh</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1n59ofh" sourceRef="Gateway_0z3yqep" targetRef="Event_13omvhu" />
+    <bpmn:boundaryEvent id="Event_03uxy7p" attachedToRef="Users_Update_Balance">
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_12gxu6x" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_00bwsxj" attachedToRef="Card_OwnerID_Update">
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_0s4yyvg" />
+    </bpmn:boundaryEvent>
+    <bpmn:association id="Association_1dqfy47" associationDirection="One" sourceRef="Event_00bwsxj" targetRef="Rollback_Card_OwnerID_Update" />
+    <bpmn:association id="Association_1ekfgq4" associationDirection="One" sourceRef="Event_03uxy7p" targetRef="Rollback_Users_Update_Balance" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_12scg7m">
+      <bpmndi:BPMNShape id="Activity_1bcugq6_di" bpmnElement="Rollback_Users_Update_Balance">
+        <dc:Bounds x="590" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="112" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_12rpvz4_di" bpmnElement="Gateway_12rpvz4">
+        <dc:Bounds x="255" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vk4jmb_di" bpmnElement="Card_OwnerID_Update">
+        <dc:Bounds x="410" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0c5rshd_di" bpmnElement="Users_Update_Balance">
+        <dc:Bounds x="410" y="220" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0z3yqep_di" bpmnElement="Gateway_0z3yqep">
+        <dc:Bounds x="725" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0c3l8yn_di" bpmnElement="Rollback_Card_OwnerID_Update">
+        <dc:Bounds x="590" y="590" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13omvhu_di" bpmnElement="Event_13omvhu">
+        <dc:Bounds x="922" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1dqfy47_di" bpmnElement="Association_1dqfy47">
+        <di:waypoint x="460" y="518" />
+        <di:waypoint x="460" y="630" />
+        <di:waypoint x="590" y="630" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ekfgq4_di" bpmnElement="Association_1ekfgq4">
+        <di:waypoint x="470" y="202" />
+        <di:waypoint x="470" y="120" />
+        <di:waypoint x="590" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_00bwsxj_di" bpmnElement="Event_00bwsxj">
+        <dc:Bounds x="442" y="482" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_03uxy7p_di" bpmnElement="Event_03uxy7p">
+        <dc:Bounds x="452" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_16vnk6i_di" bpmnElement="Flow_16vnk6i">
+        <di:waypoint x="148" y="460" />
+        <di:waypoint x="255" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k56dxh_di" bpmnElement="Flow_0k56dxh">
+        <di:waypoint x="305" y="460" />
+        <di:waypoint x="410" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q6fvsc_di" bpmnElement="Flow_1q6fvsc">
+        <di:waypoint x="280" y="435" />
+        <di:waypoint x="280" y="260" />
+        <di:waypoint x="410" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18nm43m_di" bpmnElement="Flow_18nm43m">
+        <di:waypoint x="510" y="260" />
+        <di:waypoint x="750" y="260" />
+        <di:waypoint x="750" y="435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11n8wtr_di" bpmnElement="Flow_11n8wtr">
+        <di:waypoint x="510" y="460" />
+        <di:waypoint x="725" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1n59ofh_di" bpmnElement="Flow_1n59ofh">
+        <di:waypoint x="775" y="460" />
+        <di:waypoint x="922" y="460" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
