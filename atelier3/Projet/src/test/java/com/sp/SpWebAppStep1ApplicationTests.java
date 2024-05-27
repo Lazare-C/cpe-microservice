@@ -1,13 +1,13 @@
 package com.sp;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
-class SpWebAppStep1ApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+class AClassWithOneJUnitTest {
 
+    @Test
+    void demoTestMethod() {
+        assertTrue(true);
+    }
 }
