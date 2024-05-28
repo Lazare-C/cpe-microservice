@@ -1,7 +1,7 @@
 package fr.dreamteam.account.controller;
 
 
-import fr.dreamteam.account.dto.UserDto;
+import dto.UserDto;
 import fr.dreamteam.account.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

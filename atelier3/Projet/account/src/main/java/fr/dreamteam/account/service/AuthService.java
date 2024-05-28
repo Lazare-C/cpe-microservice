@@ -1,7 +1,7 @@
 package fr.dreamteam.account.service;
 
+import dto.UserDto;
 import fr.dreamteam.account.bo.UserBo;
-import fr.dreamteam.account.dto.UserDto;
 import fr.dreamteam.account.exception.LoginException;
 import fr.dreamteam.account.mapper.UserMapper;
 import fr.dreamteam.account.repository.UserRepository;

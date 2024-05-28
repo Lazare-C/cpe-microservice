@@ -1,8 +1,8 @@
 package fr.dreamteam.account.mapper;
 
 
+import dto.UserDto;
 import fr.dreamteam.account.bo.UserBo;
-import fr.dreamteam.account.dto.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
