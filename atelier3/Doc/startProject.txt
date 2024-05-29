@@ -2,11 +2,12 @@
 
 2. docker compose up -d
 
-3. mvn -T 4 -pl discover,gateway,account,orchestrator clean spring-boot:run
+3. mvn -T 5 -pl discover,gateway,account,card,orchestrator clean spring-boot:run
 
 ou 
 
 3.  mvn -pl discover clean spring-boot:run
 4.  mvn -pl gateway clean spring-boot:run
 5.  mvn -pl account clean spring-boot:run
-6.  mvn -pl orchestrator clean spring-boot:run
+5.  mvn -pl card clean spring-boot:run
+7.  mvn -pl orchestrator clean spring-boot:run

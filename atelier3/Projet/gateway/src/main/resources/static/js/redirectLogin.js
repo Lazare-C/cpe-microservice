@@ -5,9 +5,17 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault(); // Empêche l'envoi normal du formulaire
 
         const formData = new FormData(form);
+        const urlEncodedData = new URLSearchParams();
+        for (const pair of formData) {
+            urlEncodedData.append(pair[0], pair[1]);
+        }
+
         fetch(form.action, {
             method: form.method,
-            body: formData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: urlEncodedData.toString(),
         }).then(response => {
             if (response.ok) {
                 // Redirection après une réponse réussie
