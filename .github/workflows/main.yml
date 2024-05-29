@@ -1,0 +1,48 @@
+name: Build Microservices
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        service:
+          - common
+          - discover
+          - account
+          - card
+          - gateway
+          - orchestrator
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+
+    - name: Build and Test ${{ matrix.service }}
+      run: |
+        # Change directory to the microservice
+        cd atelier3/Projet/${{ matrix.service }}
+        # Run Maven build
+        mvn clean install
+
+    - name: Archive build artifacts
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        # Name of the artifact includes the service name
+        name: ${{ matrix.service }}-build
+        # Path to the build output
+        path: atelier3/Projet/${{ matrix.service }}/target/
