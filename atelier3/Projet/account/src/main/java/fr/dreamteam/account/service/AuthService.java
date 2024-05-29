@@ -8,6 +8,7 @@ import fr.dreamteam.account.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -140,7 +141,11 @@ public class AuthService {
 
 
     public void initCards(Long userId) {
-        webClient.post().uri("http://localhost:8080/card/initiate?userId=" + userId).retrieve().bodyToMono(String.class)
+
+        WebClient client = WebClient.create("http://localhost:8080/card");
+        client.post()
+                .uri(uriBuilder -> uriBuilder.path("/initiate").queryParam("userId", userId.toString()).build())
+                .accept(MediaType.APPLICATION_JSON).retrieve().bodyToMono(String.class)
                 .block();
     }
 

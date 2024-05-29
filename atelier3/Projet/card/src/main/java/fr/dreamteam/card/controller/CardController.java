@@ -19,11 +19,6 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    @GetMapping("/")
-    public Double test() {
-        return 404.4;
-    }
-
 
     @GetMapping("/sellList")
     public ResponseEntity<List<CardDto>> getCardsToSell() {
@@ -40,14 +35,13 @@ public class CardController {
         return this.cardService.sellCard(id, price);
     }
 
-
     @PostMapping("/update/owner")
     public ResponseEntity<String> updateOwner(@RequestBody CardOwner cardOwner) {
         return this.cardService.updateOwner(cardOwner);
     }
 
     @PostMapping("/initiate")
-    public ResponseEntity<String> initiate(@RequestParam Long userId) {
+    public ResponseEntity<String> initiate(@RequestParam(name = "userId") Long userId) {
         return this.cardService.createUserInitialCards(userId);
     }
 
