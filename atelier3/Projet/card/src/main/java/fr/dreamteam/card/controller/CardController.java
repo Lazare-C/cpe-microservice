@@ -20,11 +20,6 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    @GetMapping("/my")
-    public ResponseEntity<List<CardDto>> getMyCards() {
-        return ResponseEntity.ok(this.cardService.getMyCards());
-    }
-
     @GetMapping("/sellList")
     public ResponseEntity<List<CardDto>> getCardsToSell() {
         return ResponseEntity.ok(this.cardService.cardToSell());
@@ -37,18 +32,18 @@ public class CardController {
 
     @PostMapping("/sell")
     public ResponseEntity<CardDto> sellCard(@RequestParam(value = "id") Long id, @RequestParam(value = "price") BigDecimal price) {
-        return ResponseEntity.ok(this.cardService.sellCard(id, price));
-    }
-
-    @PostMapping("/buy")
-    public ResponseEntity<CardDto> buyCard(@RequestParam(value = "id") Long id) {
-        return ResponseEntity.ok(this.cardService.buyCard(id));
+        return this.cardService.sellCard(id, price);
     }
 
 
     @PostMapping("/update/owner")
     public ResponseEntity<String> updateOwner(@RequestBody CardOwner cardOwner) {
         return this.cardService.updateOwner(cardOwner);
+    }
+
+    @PostMapping("/initiate")
+    public ResponseEntity<String> initiate(@RequestParam Long userId) {
+        return this.cardService.createUserInitialCards(userId);
     }
 
 
