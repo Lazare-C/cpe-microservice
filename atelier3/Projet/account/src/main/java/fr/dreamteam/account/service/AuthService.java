@@ -9,6 +9,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.*;
 
@@ -22,12 +23,14 @@ public class AuthService {
     private final HttpServletRequest httpServletRequest;
     private final HttpServletResponse httpServletResponse;
     private final UserMapper userMapper;
+    private final WebClient webClient;
 
     public AuthService(UserRepository userRepository, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.httpServletRequest = httpServletRequest;
         this.httpServletResponse = httpServletResponse;
         this.userMapper = userMapper;
+        webClient = WebClient.create();
     }
 
     public UserDto registerUser(String username, String password) {
@@ -35,6 +38,7 @@ public class AuthService {
             throw new LoginException("User already exists");
         }
         UserBo userBo = this.userRepository.saveAndFlush(new UserBo(username, password));
+        this.initCards(userBo.getId());
         return this.userMapper.toDto(userBo);
     }
 
@@ -57,7 +61,6 @@ public class AuthService {
         Cookie cookie = new Cookie(SESSION_COOKIE_NAME, sessionToken);
         cookie.setMaxAge(60 * 60 * 24 * 365);
         cookie.setPath("/");
-        cookie.isHttpOnly();
         this.httpServletResponse.addCookie(cookie);
         return this.userMapper.toDto(user);
     }
@@ -72,9 +75,10 @@ public class AuthService {
     public UserBo getUser() {
         return this.getUser(null);
     }
+
     public UserBo getUser(String session) {
 
-        if(session != null){
+        if (session != null) {
             UserBo userBo = this.sessionList.get(session);
             if (userBo != null) {
                 return this.userRepository.findById(userBo.getId()).orElseThrow(() -> {
@@ -132,6 +136,12 @@ public class AuthService {
     public UserDto getUserDto(String session) {
         UserBo user = this.getUser(session);
         return this.userMapper.toDto(user);
+    }
+
+
+    public void initCards(Long userId) {
+        webClient.post().uri("http://localhost:8080/card/initiate?userId=" + userId).retrieve().bodyToMono(String.class)
+                .block();
     }
 
 }
