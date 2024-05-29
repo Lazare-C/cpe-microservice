@@ -1,13 +1,18 @@
 package fr.dreamteam.card.service;
 
+import dto.CardDto;
+import dto.CardOwner;
+import dto.UserDto;
 import fr.dreamteam.card.bo.CardBo;
 import fr.dreamteam.card.exception.CardManagerException;
 import fr.dreamteam.card.mapper.CardMapper;
 import fr.dreamteam.card.repository.CardRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.security.auth.login.LoginException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Observable;
@@ -20,11 +25,13 @@ public class CardService implements Observer {
     private final AuthService authService;
     private final UserRepository userRepository;
     private final CardMapper cardMapper;
+    private final UserService userService;
 
-    public CardService(CardRepository cardRepository, AuthService authService, UserRepository userRepository, CardMapper cardMapper) {
+    public CardService(CardRepository cardRepository, AuthService authService, UserRepository userRepository, CardMapper cardMapper, UserService userService) {
         this.cardRepository = cardRepository;
         this.authService = authService;
         this.userRepository = userRepository;
+        this.userService = userService;
         this.authService.addObserver(this);
         this.cardMapper = cardMapper;
     }
@@ -129,5 +136,25 @@ public class CardService implements Observer {
         CardBo cardBo = this.cardRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
         return this.cardMapper.toDto(cardBo);
+    }
+
+    public ResponseEntity<String> updateOwner(CardOwner cardOwner) {
+        CardBo cardBo = this.cardRepository.findById(cardOwner.cardId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
+
+        UserDto user = this.userService.getUserById(cardOwner.ownerId());
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        if (user.balance().compareTo(cardBo.getPrice()) < 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not have enough money");
+        }
+        if (cardOwner.ownerId().equals(cardBo.getOwnerId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already owns the card");
+        }
+
+        cardBo.setOwnerId(cardOwner.ownerId());
+        this.cardRepository.save(cardBo);
+        return ResponseEntity.ok("success");
     }
 }
