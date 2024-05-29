@@ -56,6 +56,7 @@ public class AuthService {
 
         Cookie cookie = new Cookie(SESSION_COOKIE_NAME, sessionToken);
         cookie.setMaxAge(60 * 60 * 24 * 365);
+        cookie.setPath("/");
         cookie.isHttpOnly();
         this.httpServletResponse.addCookie(cookie);
         return this.userMapper.toDto(user);
