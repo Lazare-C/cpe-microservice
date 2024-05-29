@@ -3,8 +3,11 @@ package fr.dreamteam.card.service;
 
 import com.netflix.discovery.EurekaClient;
 import dto.UserDto;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.Arrays;
 
 @Service
 public class UserService {
@@ -12,10 +15,12 @@ public class UserService {
     private static final String ACCOUNT_SERVICE = "ACCOUNT";
     private final WebClient webClient;
     private final EurekaClient eurekaClient;
+    private final HttpServletRequest httpServletRequest;
 
 
-    public UserService(EurekaClient eurekaClient) {
+    public UserService(EurekaClient eurekaClient, HttpServletRequest httpServletRequest) {
         this.eurekaClient = eurekaClient;
+        this.httpServletRequest = httpServletRequest;
         webClient = WebClient.create();
     }
 
@@ -24,7 +29,11 @@ public class UserService {
     }
 
     public UserDto getCurrentUser() {
-        return webClient.get().uri(getAccountUService() + "/currentUser").retrieve().bodyToMono(UserDto.class).block();
+        String value = Arrays.stream(httpServletRequest.getCookies())
+                .filter(cookie -> cookie.getName().equals("sessionId")).findFirst()
+                .orElseThrow(() -> new RuntimeException("No sessionId cookie")).getValue();
+       return this.getUser(value);
+     //   return webClient.get().uri(getAccountUService() + "/currentUser").retrieve().bodyToMono(UserDto.class).block();
     }
 
     public UserDto getUser(String sessionId) {
