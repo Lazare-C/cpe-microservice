@@ -8,6 +8,7 @@
 	<name>Micro service</name>
 	<description>Tuto project for Spring Boot</description>
 	<packaging>pom</packaging>
+	<profiles><profile><id>dev</id></profile></profiles>
 
 	<modules>
 		<module>common</module>

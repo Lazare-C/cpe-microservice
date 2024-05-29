@@ -33,7 +33,8 @@ public class AuthController {
     }
 
     @GetMapping("/currentUser")
-    public ResponseEntity<UserDto> getCurrentUser() {
-        return ResponseEntity.ok(this.authService.getUserDto());
+    public ResponseEntity<UserDto> getCurrentUser(@RequestParam(value = "sessionId", required = false) String session) {
+        return ResponseEntity.ok(this.authService.getUserDto(session));
     }
+
 }

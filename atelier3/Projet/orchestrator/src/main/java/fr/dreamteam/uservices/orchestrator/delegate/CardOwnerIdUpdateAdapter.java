@@ -5,6 +5,7 @@ import dto.CardOwner;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -29,14 +30,14 @@ public class CardOwnerIdUpdateAdapter implements JavaDelegate {
 
         CardOwner cardOwner = new CardOwner(cardId, ownerId);
 
-        CardDto getOldUserId = webClient.get().uri(gatewayUrl + "/" + cardId).retrieve().bodyToMono(CardDto.class).block();
+        CardDto getOldUserId = webClient.get().uri(gatewayUrl + "/card/" + cardId).retrieve().bodyToMono(CardDto.class).block();
         execution.setVariable("oldUserId", getOldUserId.userBoId());
 
-        ClientResponse response = webClient.post().uri(gatewayUrl + "/update/owner").bodyValue(cardOwner)
+        ClientResponse response = webClient.post().uri(gatewayUrl + "/card/update/owner").contentType(MediaType.APPLICATION_JSON).bodyValue(cardOwner)
                 .exchangeToMono(Mono::just).block();
-        if (response != null && response.statusCode().isError()) {
-            throw new RuntimeException("Error while updating balance");
-        }
+ /*       if (response != null && response.statusCode().isError()) {
+            throw new RuntimeException("Error while updating card owner");
+        }*/
     }
 
 }

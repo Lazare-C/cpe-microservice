@@ -66,7 +66,23 @@ public class AuthService {
      *
      * @return null si pas d'utilisateur, sinon l'utilisateur courant
      */
+
+
     public UserBo getUser() {
+        return this.getUser(null);
+    }
+    public UserBo getUser(String session) {
+
+        if(session != null){
+            UserBo userBo = this.sessionList.get(session);
+            if (userBo != null) {
+                return this.userRepository.findById(userBo.getId()).orElseThrow(() -> {
+                    this.logoutUser();
+                    return new LoginException("Session not found");
+                });
+            }
+        }
+
         if (this.httpServletRequest.getCookies() == null) {
             return null;
         }
@@ -112,8 +128,9 @@ public class AuthService {
 
     }
 
-    public UserDto getUserDto() {
-        UserBo user = this.getUser();
+    public UserDto getUserDto(String session) {
+        UserBo user = this.getUser(session);
         return this.userMapper.toDto(user);
     }
+
 }

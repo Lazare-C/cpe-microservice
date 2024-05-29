@@ -4,6 +4,7 @@ import dto.UserDto;
 import fr.dreamteam.account.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,7 +17,7 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getAccountById(Long id) {
+    public ResponseEntity<UserDto> getAccountById(@PathVariable Long id) {
         return accountService.getUserById(id);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.logging.Logger;
+
 @Service
 public class UService {
 
@@ -16,6 +18,8 @@ public class UService {
     private final HttpServletResponse httpServletResponse;
     private final WebClient webClient;
     private final EurekaClient eurekaClient;
+
+    private final Logger logger = Logger.getLogger(UService.class.getName());
 
     public UService(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, EurekaClient eurekaClient) {
         this.httpServletRequest = httpServletRequest;
@@ -35,6 +39,7 @@ public class UService {
         headers.remove(HttpHeaders.HOST);
         headers.remove(HttpHeaders.CONTENT_LENGTH);
 
+
         ResponseEntity<String> block = webClient.method(method).uri(requestUri)
                 .headers(httpHeaders -> httpHeaders.addAll(headers))
                 .bodyValue(body)
@@ -47,6 +52,7 @@ public class UService {
     }
 
     public String getEurekaServiceUrl(String service) {
+        logger.info("Getting service url for " + service + " with eureka");
         if (eurekaClient.getApplication(service).getInstances().isEmpty()) {
             throw new RuntimeException("Service not found");
         }
