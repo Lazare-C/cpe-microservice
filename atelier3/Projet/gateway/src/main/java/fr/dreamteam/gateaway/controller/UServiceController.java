@@ -18,8 +18,15 @@ public class UServiceController {
     }
 
     @RequestMapping(value = {"/account/**"})
-    public ResponseEntity<String> account(@RequestBody String body) throws IOException {
+    public ResponseEntity<String> account(@RequestBody(required = false) String body) throws IOException {
+        if (body == null) { body = ""; }
         return uService.proxy("ACCOUNT", body);
+    }
+
+    @RequestMapping(value = {"/card/**"})
+    public ResponseEntity<String> card(@RequestBody(required = false) String body) throws IOException {
+        if (body == null) { body = ""; }
+        return uService.proxy("CARD", body);
     }
 
 }

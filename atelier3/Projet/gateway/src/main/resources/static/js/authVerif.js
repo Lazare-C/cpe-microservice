@@ -1,6 +1,6 @@
 (function() {
     // Effectue une requête vers l'endpoint pour obtenir les informations de l'utilisateur courant
-    fetch('http://localhost:8080/currentUser')
+    fetch('http://localhost:8080/account/currentUser')
         .then(response => response.json())
         .then(data => {
             // Vérifiez ici si la réponse est valide
