@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/card")
 public class CardController {
 
     private final CardService cardService;
@@ -19,6 +18,12 @@ public class CardController {
     public CardController(CardService cardService) {
         this.cardService = cardService;
     }
+
+    @GetMapping("/")
+    public Double test() {
+        return 404.4;
+    }
+
 
     @GetMapping("/sellList")
     public ResponseEntity<List<CardDto>> getCardsToSell() {
