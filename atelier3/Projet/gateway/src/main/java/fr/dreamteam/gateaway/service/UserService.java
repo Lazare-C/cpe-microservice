@@ -1,4 +1,4 @@
-package fr.dreamteam.card.service;
+package fr.dreamteam.gateaway.service;
 
 
 import com.netflix.discovery.EurekaClient;
@@ -28,10 +28,12 @@ public class UserService {
     }
 
     public UserDto getUser(String sessionId) {
+
         String url = getAccountUService() + "/currentUser?sessionId=" + sessionId;
         return webClient.get().uri(url).retrieve().bodyToMono(UserDto.class).block();
 
     }
+
 
     public String getAccountUService() {
         return eurekaClient.getApplication(ACCOUNT_SERVICE).getInstances().get(0).getHomePageUrl();

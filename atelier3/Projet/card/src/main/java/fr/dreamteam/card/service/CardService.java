@@ -7,12 +7,16 @@ import fr.dreamteam.card.bo.CardBo;
 import fr.dreamteam.card.exception.CardManagerException;
 import fr.dreamteam.card.mapper.CardMapper;
 import fr.dreamteam.card.repository.CardRepository;
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -20,11 +24,13 @@ public class CardService {
     private final CardRepository cardRepository;
     private final CardMapper cardMapper;
     private final UserService userService;
+    private final HttpServletRequest httpServletRequest;
 
-    public CardService(CardRepository cardRepository, CardMapper cardMapper, UserService userService) {
+    public CardService(CardRepository cardRepository, CardMapper cardMapper, UserService userService, HttpServletRequest httpServletRequest) {
         this.cardRepository = cardRepository;
         this.userService = userService;
         this.cardMapper = cardMapper;
+        this.httpServletRequest = httpServletRequest;
     }
 
     public List<CardBo> getUserCards(Long userId) {
@@ -108,8 +114,10 @@ public class CardService {
     }
 
     public ResponseEntity<List<CardDto>> getMyCards() {
-        UserDto currentUser = this.userService.getCurrentUser();
-        if (currentUser == null) {
+        String sessionId = Arrays.stream(httpServletRequest.getCookies())
+                .filter(cookie -> cookie.getName().equals("sessionId"))
+                .findFirst().orElseThrow(() -> new RuntimeException("No session cookie found")).getValue();
+        UserDto currentUser = this.userService.getUser(sessionId);        if (currentUser == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
         List<CardBo> cards = this.cardRepository.getUserCards(currentUser.id());

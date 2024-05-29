@@ -28,7 +28,7 @@ public class UserUpdateBalanceAdapter implements JavaDelegate {
         BigDecimal amount = (BigDecimal) execution.getVariable("amount");
 
         BalanceUpdate balanceUpdate = new BalanceUpdate(userId, amount);
-        ClientResponse response = webClient.post().uri(gatewayUrl + "/balance").bodyValue(balanceUpdate)
+        ClientResponse response = webClient.post().uri(gatewayUrl + "/account/balance").bodyValue(balanceUpdate)
                 .exchangeToMono(Mono::just).block();
         if (response != null && response.statusCode().isError()) {
             throw new RuntimeException("Error while updating balance");

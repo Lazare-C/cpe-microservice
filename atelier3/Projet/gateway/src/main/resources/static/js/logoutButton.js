@@ -4,7 +4,7 @@
     // Ajouter un événement onclick au bouton
     logoutButton.onclick = function() {
         // Appeler l'API localhost:8080/logout
-        fetch('http://localhost:8080/logout', {
+        fetch('http://localhost:8080/account/logout', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
