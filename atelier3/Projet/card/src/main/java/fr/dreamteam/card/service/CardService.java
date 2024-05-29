@@ -57,32 +57,18 @@ public class CardService {
         return this.cardMapper.toDtoList(cardRepository.getCardsToSell());
     }
 
-/*    public CardDto buyCard(Long cardId) {
-        CardBo cardBo = this.cardRepository.findById(cardId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
-        if (authService.getUser() == null) {
-            throw new LoginException("User not logged in");
-        } else if (authService.getUser().getBalance().compareTo(cardBo.getPrice()) < 0) {
-            throw new CardManagerException("Not enough money");
-        } else if (cardBo.getOwner().getId().equals(authService.getUser().getId())) {
-            throw new CardManagerException("You already own this cardBo");
-        } else if (cardBo.getPrice().compareTo(BigDecimal.ZERO) == 0) {
-            throw new CardManagerException("CardBo is not for sale");
-        }
-        authService.getUser().setBalance(authService.getUser().getBalance().subtract(cardBo.getPrice()));
-        cardBo.getOwner().setBalance(cardBo.getOwner().getBalance().add(cardBo.getPrice()));
-        cardBo.setPrice(BigDecimal.ZERO);
-        cardBo.setOwner(authService.getUser());
-        cardBo = cardRepository.saveAndFlush(cardBo);
-        return this.cardMapper.toDto(cardBo);
-    }*/
-
 
     public ResponseEntity<CardDto> sellCard(Long cardId, BigDecimal price) {
         CardBo cardBo = this.cardRepository.findById(cardId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
 
-        UserDto user = this.userService.getUserById(cardBo.getOwnerId());
+        UserDto currentUser = this.userService.getCurrentUser();
+        if (currentUser == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        if (!currentUser.id().equals(cardBo.getOwnerId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not own the card");
+        }
 
         if (price.compareTo(BigDecimal.ZERO) < 0) {
             throw new CardManagerException("Price must be positive");
@@ -92,46 +78,41 @@ public class CardService {
         return ResponseEntity.ok(this.cardMapper.toDto(cardBo));
     }
 
-/*
-    public CardDto sellCard(Long cardId, BigDecimal price) {
-*/
-
-
-
-
-/*    public List<CardDto> getMyCards() {
-        UserBo userBo = this.authService.getUserOptional()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        List<CardBo> cards = this.getUserCards(userBo.getId());
-        return cardMapper.toDtoList(cards);
-    }*/
-
-        public CardDto getCardById (Long id){
-            CardBo cardBo = this.cardRepository.findById(id)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
-            return this.cardMapper.toDto(cardBo);
-        }
-
-        public ResponseEntity<String> updateOwner (CardOwner cardOwner){
-            CardBo cardBo = this.cardRepository.findById(cardOwner.cardId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
-
-            UserDto user = this.userService.getUserById(cardOwner.ownerId());
-            if (user == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
-            }
-            if (user.balance().compareTo(cardBo.getPrice()) < 0) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not have enough money");
-            }
-            if (cardOwner.ownerId().equals(cardBo.getOwnerId())) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already owns the card");
-            }
-            if (cardBo.getPrice().compareTo(BigDecimal.ZERO) == 0) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CardBo is not for sale");
-            }
-
-            cardBo.setOwnerId(cardOwner.ownerId());
-            this.cardRepository.save(cardBo);
-            return ResponseEntity.ok("success");
-        }
+    public CardDto getCardById(Long id) {
+        CardBo cardBo = this.cardRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
+        return this.cardMapper.toDto(cardBo);
     }
+
+    public ResponseEntity<String> updateOwner(CardOwner cardOwner) {
+        CardBo cardBo = this.cardRepository.findById(cardOwner.cardId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Card not found"));
+
+        UserDto user = this.userService.getUserById(cardOwner.ownerId());
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        if (user.balance().compareTo(cardBo.getPrice()) < 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not have enough money");
+        }
+        if (cardOwner.ownerId().equals(cardBo.getOwnerId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already owns the card");
+        }
+        if (cardBo.getPrice().compareTo(BigDecimal.ZERO) == 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CardBo is not for sale");
+        }
+
+        cardBo.setOwnerId(cardOwner.ownerId());
+        this.cardRepository.save(cardBo);
+        return ResponseEntity.ok("success");
+    }
+
+    public ResponseEntity<List<CardDto>> getMyCards() {
+        UserDto currentUser = this.userService.getCurrentUser();
+        if (currentUser == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        List<CardBo> cards = this.cardRepository.getUserCards(currentUser.id());
+        return ResponseEntity.ok(this.cardMapper.toDtoList(cards));
+    }
+}

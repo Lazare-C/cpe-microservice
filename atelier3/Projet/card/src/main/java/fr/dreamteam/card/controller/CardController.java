@@ -46,5 +46,10 @@ public class CardController {
         return this.cardService.createUserInitialCards(userId);
     }
 
+    @GetMapping("/my")
+    public ResponseEntity<List<CardDto>> getMyCards() {
+        return this.cardService.getMyCards();
+    }
+
 
 }

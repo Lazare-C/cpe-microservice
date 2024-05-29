@@ -23,6 +23,10 @@ public class UserService {
         return webClient.get().uri(getAccountUService() + "/" + userId).retrieve().bodyToMono(UserDto.class).block();
     }
 
+    public UserDto getCurrentUser() {
+        return webClient.get().uri(getAccountUService() + "/currentUser").retrieve().bodyToMono(UserDto.class).block();
+    }
+
 
     public String getAccountUService() {
         return eurekaClient.getApplication(ACCOUNT_SERVICE).getInstances().get(0).getHomePageUrl();
