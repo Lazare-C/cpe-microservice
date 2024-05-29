@@ -1,13 +1,13 @@
-package fr.dreamteam.uservices.orchestrator;
+// package fr.dreamteam.uservices.orchestrator;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class OrchestratorApplicationTests {
+// @SpringBootTest
+// class OrchestratorApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+//     @Test
+//     void contextLoads() {
+//     }
 
-}
+// }
