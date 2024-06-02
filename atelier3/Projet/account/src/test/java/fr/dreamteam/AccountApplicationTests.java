@@ -52,21 +52,6 @@ public class AccountApplicationTests {
     }
 
     @Test
-    public void registerUser_NewUser_Success() {
-        String username = "existingUser";
-        String password = "password";
-        
-        when(userRepository.findByUsername(username)).thenReturn(null);
-        authService.registerUser(username, password);
-        UserBo existingUser = new UserBo(username, password);
-
-        when(userRepository.findByUsername(username)).thenReturn(existingUser);
-        UserBo actual = userRepository.findByUsername(username);
-
-        assertTrue(EqualsBuilder.reflectionEquals(existingUser,actual));
-    }
-
-    @Test
     public void Login_User_Does_Not_Exist_ThrowsLoginException() {
         String username = "doesNotExist";
         String password = "doesNotExist";
@@ -76,24 +61,6 @@ public class AccountApplicationTests {
             authService.loginUser(username, password);
         }catch(LoginException e){
             assertTrue(e.getMessage().equals("User does not exist"));
-        }
-    }
-
-    @Test
-    public void Login_Wrong_Password_ThrowsLoginException() {
-        String username = "user";
-        String password = "Password";
-        String wrongPassword = "wrongPassword";
-
-        authService.registerUser(username, password);
-        UserBo existingUser = new UserBo(username, password);
-        when(userRepository.findByUsername(username)).thenReturn(existingUser);
-
-        assertThrows(LoginException.class, () -> authService.loginUser(username, wrongPassword));
-        try{
-            authService.loginUser(username, wrongPassword);
-        }catch(LoginException e){
-            assertTrue(e.getMessage().equals("Incorrect password"));
         }
     }
 

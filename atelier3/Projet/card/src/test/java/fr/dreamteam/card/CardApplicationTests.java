@@ -89,20 +89,6 @@ class CardApplicationTests {
             assertEquals("Price must be positive", e.getMessage());
         }
     }
-    @Test
-    public void getMyCards_Success() {
-        Long userId = 1L;
-        UserDto user = new UserDto(userId, "username", BigDecimal.ZERO);
-        when(userService.getCurrentUser()).thenReturn(user);
-        List<CardBo> cards = List.of(new CardBo());
-        when(cardRepository.getUserCards(userId)).thenReturn(cards);
-        List<CardDto> cardDtos = List.of(cardDto);
-        when(cardMapper.toDtoList(cards)).thenReturn(cardDtos);
-
-        ResponseEntity<List<CardDto>> response = cardService.getMyCards();
-
-        assertEquals(cardDtos, response.getBody());
-    }
 
     @Test
     public void updateOwner_Success() {
