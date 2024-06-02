@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Play Room</title>
+    <link rel="stylesheet" type="text/css" href="../css/play-room.css" />
+    <!-- Deuxieme verification en plus de celle des apis -->
+    <script src="../js/authVerif.js"></script>
+</head>
+<body>
+<div>
+    <h1>
+        Play Room
+    </h1>
+</div>
+<div class="sub-header"><h2 id="header-user-balance"> 0 $ </h2> <span><h2 id="header-name">...</h2> </span></div> <div><button id="Logout-button" >Logout</button></div><a href="/cardGame/welcomePage.html">Home</a>
+<div class="container">
+    <table id="tableau" class="tab">
+        <thead>
+        <tr>
+            <th scope="col">Room</th>
+            <th scope="col">User</th>
+            <th scope="col">Bet</th>
+        </tr>
+        </thead>
+        <tbody id="list-of-card">
+            <tr>
+                <td>A</td>
+                <td>jDoe</td>
+                <td>150€</td>
+            </tr>
+            <tr>
+                <td>La room des gros bg</td>
+                <td>albator</td>
+                <td>1000€</td>
+            </tr>
+            <tr>
+                <td>La room des gros bg</td>
+                <td>albator</td>
+                <td>1000€</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="createRoomButton">
+        <a href="/cardGame/createRoom.html" id="play-button">
+            <div>Create Room</div>
+        </a>
+    </div>
+</body>
+</html>
