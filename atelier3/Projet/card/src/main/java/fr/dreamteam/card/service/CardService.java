@@ -107,7 +107,7 @@ public class CardService {
         if (cardBo.getPrice().compareTo(BigDecimal.ZERO) == 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CardBo is not for sale");
         }
-
+        cardBo.setPrice(BigDecimal.ZERO);
         cardBo.setOwnerId(cardOwner.ownerId());
         this.cardRepository.save(cardBo);
         return ResponseEntity.ok("success");
