@@ -37,6 +37,10 @@ public class WorkflowService {
                             "value": "%d",
                         "type": "Long"
                         },
+                        "amount": {
+                            "value": 1000.0,
+                        "type": "Double"
+                        },
                            "cardId": {
                         "value": "%d",
                         "type": "Long"

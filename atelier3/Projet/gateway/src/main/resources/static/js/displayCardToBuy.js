@@ -97,6 +97,7 @@ let cardId;
 
                         const formData = new FormData();
                         formData.append('id', cardId);
+                        formData.append('amount', 1000);
                         $.ajax({
                             url: '/wf/card/buy/'+cardId, // URL de l'endpoint de vente des cartes
                             method: 'POST',

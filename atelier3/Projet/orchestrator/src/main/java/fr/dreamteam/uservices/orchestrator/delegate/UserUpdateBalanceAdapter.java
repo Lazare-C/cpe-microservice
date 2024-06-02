@@ -25,12 +25,18 @@ public class UserUpdateBalanceAdapter implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
         Long userId = (Long) execution.getVariable("userId");
-        BigDecimal amount = (BigDecimal) execution.getVariable("amount");
+        Double amount = (Double) execution.getVariable("amount");
+        Long oldUserId = (Long) execution.getVariable("oldUserId");
+        BigDecimal amountBigD = BigDecimal.valueOf(amount.doubleValue());
+        BalanceUpdate balanceUpdateOldUser = new BalanceUpdate(oldUserId, amountBigD);
+        amountBigD = amountBigD.negate();
+        BalanceUpdate balanceUpdate = new BalanceUpdate(userId, amountBigD);
 
-        BalanceUpdate balanceUpdate = new BalanceUpdate(userId, amount);
-        ClientResponse response = webClient.post().uri(gatewayUrl + "/account/balance").bodyValue(balanceUpdate)
+        ClientResponse response = webClient.post().uri(gatewayUrl + "/account/receive").bodyValue(balanceUpdate)
                 .exchangeToMono(Mono::just).block();
-        if (response != null && response.statusCode().isError()) {
+        ClientResponse responseOldUser = webClient.post().uri(gatewayUrl + "/account/receive").bodyValue(balanceUpdateOldUser)
+                .exchangeToMono(Mono::just).block();
+        if (response != null && response.statusCode().isError() && responseOldUser != null && responseOldUser.statusCode().isError()) {
             throw new RuntimeException("Error while updating balance");
         }
     }
