@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>View Card</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/homepage.css}" />
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}">
+        <h1> Cards </h1>
+    </div>
+    <div class="homepage-container">
+        <div class="sub-header"><h2 > 5000 $ </h2> <span><h2 th:utext="${myUser.username}">...</h2> </span></div>
+        <div class="homepage-button-container">
+            <a href="/buy">Buy</a>
+            <a href="/list">Sell</a>
+            <a href="#">Play</a>
+        </div>
+    </div>
+
+
+</body>
+</html>

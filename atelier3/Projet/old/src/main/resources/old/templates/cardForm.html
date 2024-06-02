@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Welcome</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+		<div th:replace="~{fragments/header :: header}">
+		<h1> Amazing website </h1>
+	</div>
+	<form th:action="@{/addCard}"
+         th:object="${cardForm}" method="POST">
+		<fieldset >
+			<legend >Add your Card ! </legend>
+			<div >
+				<label for="form-name">Name</label>
+				<div >
+					<input id="form-name" type="text"
+						placeholder="Card name..." th:field="*{name}">
+				</div>
+			</div>
+			<div >
+				<label for="form-description">Description</label>
+				<div >
+					<input id="form-description" type="text"
+						placeholder="Card description..." th:field="*{description}">
+				</div>
+			</div>
+			<div >
+				<label for="form-imageurl">Image Url</label>
+				<div >
+					<input id="form-imageurl" type="text"
+						placeholder="Card imageurl..." th:field="*{imgUrl}">
+				</div>
+			</div>
+			<div >
+				<label for="form-familly">Familly</label>
+				<select name="familly" id="familly">
+					<option value="Happy three firend">Happy three firend</option>
+					<option value="Pokemon">Pokemon</option>
+				</select>
+			</div>
+			<div >
+				<label for="form-affinity">affinity</label>
+				<select name="affinity" id="affinity">
+					<option value="Feu">Feu</option>
+					<option value="Eau">Eau</option>
+					<option value="Plante">Plante</option>
+					<option value="Air">Air</option>
+				</select>
+			</div>
+			<div >
+				<div>
+					<input type="range" id="hp" name="hp" min="0" max="100" th:field="*{Hp}"/>
+					<label for="hp">HP</label>
+				</div>
+				<div>
+					<input type="range" id="Energy" name="Energy" min="0" max="100" th:field="*{energy}"/>
+					<label for="Energy">Energy</label>
+				</div>
+				<div>
+					<input type="range" id="Attack" name="Attack" min="0" max="100" th:field="*{attack}"/>
+					<label for="Attack">Attack</label>
+				</div>
+				<div>
+					<input type="range" id="Defense" name="Defense" min="0" max="100" th:field="*{defense}"/>
+					<label for="Defense">Defense</label>
+				</div>
+			</div>
+			<div><button>Cancel</button></div>
+			<div >
+				<input type="submit"  class="uk-button uk-button-default" value="Create" />
+			</div>
+
+		</fieldset>
+	</form>
+
+</body>
+
+</html>
